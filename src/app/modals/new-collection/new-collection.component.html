@@ -1,0 +1,63 @@
+<Page>
+    <FlexboxLayout flexDirection="column"
+        height="100%"
+        class="modal">
+
+        <ScrollView orientation="vertical">
+            <StackLayout height="auto"
+                width="100%"
+                orientation="vertical">
+
+                <Form [formGroup]="form">
+
+                    <!-- Name of collection -->
+                    <CardView class="cardview"
+                        [class.tablet]="isTablet">
+                        <StackLayout class="cardview-inner">
+                            <ns-form-element
+                                [error]="form.controls.name.dirty ? (form.controls.name?.errors?.message | translate) : null"
+                                [title]="'collection-modal.name' | translate">
+
+                                <TextField class="form-element"
+                                    [class.error]="form.controls.name.dirty && !!form.controls.name?.errors"
+                                    autocorrect="false"
+                                    autoCapitalizationType="none"
+                                    returnKeyType="done"
+                                    formControlName="name"></TextField>
+                            </ns-form-element>
+                        </StackLayout>
+                    </CardView>
+
+                    <!-- Icon -->
+                    <CardView class="cardview"
+                        [class.tablet]="isTablet">
+                        <StackLayout class="cardview-inner">
+                            <ns-form-element
+                                ignoreTablet="true"
+                                [title]="'collection-modal.icon' | translate">
+                                <ns-form-icon-selector
+                                    [spinner]="spinner"
+                                    formControlName="icon"></ns-form-icon-selector>
+                            </ns-form-element>
+                        </StackLayout>
+                    </CardView>
+
+                </Form>
+
+                <!-- Button bar -->
+                <CardView class="cardview"
+                    [class.tablet]="isTablet">
+                    <StackLayout class="cardview-inner">
+                        <Button class="form-button"
+                            [isEnabled]="!form.invalid"
+                            (tap)="submitForm()"
+                            [text]="'general.ok-button' | translate"></Button>
+                        <Button class="form-button"
+                            (tap)="cancel()"
+                            [text]="'general.cancel-button' | translate"></Button>
+                    </StackLayout>
+                </CardView>
+            </StackLayout>
+        </ScrollView>
+    </FlexboxLayout>
+</Page>

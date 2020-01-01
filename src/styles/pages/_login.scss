@@ -1,0 +1,57 @@
+@keyframes login-glow {
+    0% { background-color: $darkgreen; }
+    50% { background-color: $lightgreen; }
+    100% { background-color: $darkgreen; }
+}
+
+.login {
+
+    .login-icon {
+        font-size: 50;
+        padding: 0;
+        border-radius: 50;
+        background-color: $blue01;
+        color: $white;
+        height: 100;
+        width: 100;
+        max-width: 100;
+        max-height: 100;
+        text-align: center;
+    }
+
+    .title-wrapper {
+        margin: 10 20;
+    }
+
+    .login-icon-wrapper {
+        margin: 0;
+        padding: 0;
+        background-color: $background;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        &.inner {
+            height: 110;
+            width: 110;
+            border-radius: 55;
+        }
+
+        &.outer {
+            height: 130;
+            width: 130;
+            border-radius: 65;
+            background-color: transparent;
+
+            &.glow {
+                background-color: $lightgreen;
+                animation-name: login-glow;
+                animation-duration: 1s;
+                animation-fill-mode: forwards;
+                animation-direction: alternate;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }              
+        }
+    }
+}

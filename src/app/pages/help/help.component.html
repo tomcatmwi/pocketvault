@@ -1,0 +1,26 @@
+<Page>
+    <ns-actionbar [backButton]="true"
+        [menu]="false"
+        (onBackButton)="goBack()"
+        [title]="'help.title' | translate"></ns-actionbar>
+
+    <StackLayout orientation="vertical"
+        class="help-page">
+
+        <FlexboxLayout class="help-header">
+
+            <Button *ngFor="let button of buttons; let i=index"
+                (tap)="changePage(i)"
+                class="button header-button"
+                [text]="'help.button-' + button | translate"></Button>
+
+        </FlexboxLayout>
+
+        <StackLayout *ngIf="help"
+            class="help">
+            <HtmlView (doubleTap)="versionInfo()"
+                [html]="help"></HtmlView>
+        </StackLayout>
+
+    </StackLayout>
+</Page>

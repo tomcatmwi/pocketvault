@@ -1,0 +1,40 @@
+<ActionBar class="action-bar">
+    <GridLayout rows="*"
+        columns="50,*,50"
+        class="action-bar">
+
+        <!-- Back button -->
+        <FlexboxLayout *ngIf="!!backButton"
+            (tap)="back()"
+            class="header-element"
+            row="0"
+            col="0">
+            <Label class="action-bar-title fa"
+                [text]="'fa-arrow-left' | fonticon">
+            </Label>
+        </FlexboxLayout>
+
+        <!-- Label -->
+        <FlexboxLayout class="header-element"
+            row="0"
+            col="1">
+            <Label [text]="title"
+                class="action-bar-title"
+                [class.tablet]="isTablet"></Label>
+        </FlexboxLayout>
+
+        <!-- Menu button -->
+        <FlexboxLayout *ngIf="menu"
+            row="0"
+            col="2"
+            (tap)="openMenu()"
+            paddingRight="15"
+            paddingLeft="15"
+            class="header-element">
+            <Label class="action-bar-title fa"
+                [text]="'fa-bars' | fonticon">
+            </Label>
+        </FlexboxLayout>
+
+    </GridLayout>
+</ActionBar>

@@ -1,0 +1,18 @@
+<GridLayout rows="auto"
+    columns="auto,10,*"
+    class="form-checkbox"
+    (tap)="value = !value">
+
+    <FlexboxLayout row="0"
+        col="0" class="checkbox">
+        <Label class="fa"
+            [text]="(value ? 'fa-check-square' : 'fa-square') | fonticon"></Label>
+    </FlexboxLayout>
+
+    <FlexboxLayout row="0"
+        col="2" class="label">
+        <Label textWrap="true"
+            [text]="label | translate"></Label>
+    </FlexboxLayout>
+
+</GridLayout>

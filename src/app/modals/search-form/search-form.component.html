@@ -1,0 +1,67 @@
+<Page>
+    <FlexboxLayout flexDirection="column"
+        height="100%"
+        class="modal">
+
+        <ScrollView height="auto"
+            width="100%"
+            orientation="vertical">
+            <StackLayout width="100%"
+                height="auto"
+                orientation="vertical">
+
+                <Form [formGroup]="form">
+
+                    <!-- What to search -->
+                    <CardView class="cardview"
+                        [class.tablet]="isTablet">
+                        <StackLayout class="cardview-inner">
+                            <ns-form-element
+                                [error]="form.controls.search?.dirty ? (form.controls.search?.errors?.message | translate) : null"
+                                [title]="('search.search' | translate) + ':'">
+                                <TextField class="form-control"
+                                    [class.error]="form.controls.search?.dirty && !!form.controls.search?.errors"
+                                    autocorrect="true"
+                                    autoCapitalizationType="none"
+                                    returnKeyType="done"
+                                    formControlName="search"></TextField>
+                            </ns-form-element>
+                        </StackLayout>
+                    </CardView>
+
+                    <!-- Where to search -->
+                    <CardView class="cardview"
+                        [class.tablet]="isTablet">
+                        <StackLayout class="cardview-inner">
+                            <ns-form-checkbox
+                                formControlName="itemTitles"
+                                label="search.checkbox-item-titles"></ns-form-checkbox>
+                            <ns-form-checkbox
+                                formControlName="itemValues"
+                                label="search.checkbox-item-values"></ns-form-checkbox>
+                            <ns-form-checkbox
+                                formControlName="collections"
+                                label="search.checkbox-collections"></ns-form-checkbox>
+                        </StackLayout>
+                    </CardView>
+                </Form>
+
+                <!-- Button bar -->
+                <CardView class="cardview"
+                    [class.tablet]="isTablet">
+                    <StackLayout class="cardview-inner">
+                        <Button class="form-button"
+                            (tap)="submitForm()"
+                            [isEnabled]="!form.invalid"
+                            [text]="'general.ok-button' | translate"></Button>
+                        <Button class="form-button"
+                            (tap)="cancel()"
+                            [text]="'general.cancel-button' | translate"></Button>
+                    </StackLayout>
+                </CardView>
+
+
+            </StackLayout>
+        </ScrollView>
+    </FlexboxLayout>
+</Page>

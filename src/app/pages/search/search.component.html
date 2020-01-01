@@ -1,0 +1,122 @@
+<Page>
+
+    <ns-actionbar (onBackButton)="goBack()"
+        backButton="true"
+        menuButton="false"
+        [title]="'search.title' | translate"></ns-actionbar>
+
+    <GridLayout rows="*, auto"
+        columns="*, auto"
+        [ngSwitch]="!!collections?.length || !!items?.length"
+        class="search">
+
+        <!-- Content area -->
+        <StackLayout row="0"
+            col="0"
+            colSpan="2"
+            rowSpan="2"
+            class="main-content"
+            orientation="vertical">
+
+            <!-- No search results -->
+            <FlexboxLayout *ngSwitchCase="false"
+                class="not-found">
+
+                <Label class="not-found-title"
+                    [text]="'search.not-found' | translate"></Label>
+                <Label class="not-found-text"
+                    [text]="'search.start-search' | translate"></Label>
+
+            </FlexboxLayout>
+
+            <!-- Search results -->
+            <ScrollView *ngSwitchCase="true"
+                height="100%"
+                width="100%"
+                orientation="vertical">
+
+                <StackLayout width="100%"
+                    height="100%"
+                    orientation="vertical">
+
+                    <!-- Collections -->
+                    <ListView *ngIf="!!collections?.length"
+                        [items]="collections">
+                        <ng-template let-collection="item">
+
+                            <GridLayout rows="*"
+                                columns="auto,*"
+                                class="list-collection"
+                                (tap)="tapSearchResult(collection.collectionId)">
+
+                                <!-- Icon -->
+                                <FlexboxLayout class="list-collection-icon"
+                                    [style.background]="collection?.icon?.background"
+                                    row="0"
+                                    col="0">
+                                    <Label [class]="collection?.icon?.name?.split(' ')[0]"
+                                        [style.color]="collection?.icon?.color"
+                                        [text]="collection?.icon?.name?.split(' ')[1] | fonticon"></Label>
+
+                                </FlexboxLayout>
+
+                                <!-- Collection's name -->
+                                <StackLayout row="0"
+                                    col="1"
+                                    orientation="vertical"
+                                    horizontalAlignment="left"
+                                    verticalAlignment="center"
+                                    class="list-collection-text">
+                                    <Label [text]="collection?.collectionName"></Label>
+                                </StackLayout>
+
+                            </GridLayout>
+
+                        </ng-template>
+                    </ListView>
+
+                    <!-- Items -->
+                    <ListView *ngIf="!!items?.length"
+                        [items]="items">
+                        <ng-template let-item="item"
+                            let-i="index">
+
+                            <StackLayout orientation="vertical"
+                                height="auto"
+                                width="100%">
+
+                                <FlexboxLayout *ngIf="item.collectionId && (i === 0 || items[i-1].collectionId !== item.collectionId)"
+                                    class="result-collection-header">
+                                    <Label [text]="item.collectionName"></Label>
+                                </FlexboxLayout>
+
+                                <FlexboxLayout (tap)="tapSearchResult(item.collectionId)"
+                                    class="list-item">
+                                    <Label class="list-item-name"
+                                        [text]="item?.itemName"></Label>
+                                    <Label *ngIf="item?.itemComment"
+                                        class="list-item-comment"
+                                        [text]="item?.itemComment"></Label>
+                                </FlexboxLayout>
+
+                            </StackLayout>
+
+                        </ng-template>
+                    </ListView>
+
+                </StackLayout>
+
+            </ScrollView>
+        </StackLayout>
+
+
+        <!-- Add button -->
+        <Button id="addButton"
+            row="1"
+            col="1"
+            (tap)="startSearch()"
+            class="round-button fa"
+            [text]="'fa-search' | fonticon"></Button>
+
+    </GridLayout>
+</Page>

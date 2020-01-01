@@ -1,0 +1,76 @@
+{
+  "nativescript": {
+    "id": "com.pixeldog.pocketvault",
+    "tns-ios": {
+      "version": "6.1.0"
+    },
+    "tns-android": {
+      "version": "6.3.1"
+    }
+  },
+  "scripts": {
+    "bundle": "tns build android --release --bundle --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password process.env.key-store-password --key-store-alias pocketvault --key-store-alias-password process.env.key-store-alias-password --aab --copy-to d:/Project/pocketvault/pocketvault-release.aab",
+    "build": "tns build android --release --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password process.env.key-store-password --key-store-alias pocketvault --key-store-alias-password process.env.key-store-alias-password --copy-to d:/Project/pocketvault/pocketvault-release.apk",
+    "showkey": "keytool -exportcert -list -v -alias pocketvault -keystore ../!keystore/pocketvault.keystore"
+  },
+  "description": "A simple mobile application to store small bits of personal information safely",
+  "license": "SEE LICENSE IN license.txt",
+  "repository": "https://github.com/tomcatmwi/pocketvault",
+  "dependencies": {
+    "@angular/animations": "~8.2.13",
+    "@angular/common": "~8.2.13",
+    "@angular/compiler": "~8.2.13",
+    "@angular/core": "~8.2.13",
+    "@angular/forms": "~8.2.13",
+    "@angular/platform-browser": "~8.2.13",
+    "@angular/platform-browser-dynamic": "~8.2.13",
+    "@angular/router": "~8.2.13",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/effects": "^8.5.0",
+    "@ngrx/router-store": "^8.5.0",
+    "@ngrx/store": "^8.5.0",
+    "@ngrx/store-devtools": "^8.5.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
+    "@nstudio/nativescript-cardview": "^1.0.0",
+    "@teammaestro/nativescript-svg": "^1.0.1",
+    "crypto-js": "^3.1.9-1",
+    "moment": "^2.24.0",
+    "nativescript-angular": "~8.20.1",
+    "nativescript-appversion": "^1.4.4",
+    "nativescript-clipboard": "^1.2.0",
+    "nativescript-color-picker": "^1.6.0",
+    "nativescript-drop-down": "^5.0.4",
+    "nativescript-exit": "^1.0.1",
+    "nativescript-gradient": "^2.0.1",
+    "nativescript-menu": "^1.1.3",
+    "nativescript-multi-select": "^1.0.6",
+    "nativescript-ngx-fonticon": "^5.0.2",
+    "nativescript-permissions": "^1.3.8",
+    "nativescript-picker": "^2.1.2",
+    "nativescript-plugin-firebase": "^10.1.1",
+    "nativescript-radiobutton": "^0.1.0",
+    "nativescript-theme-core": "^2.0.24",
+    "nativescript-toasty": "^2.0.1",
+    "nativescript-ui-listview": "^8.0.1",
+    "nativescript-ui-sidedrawer": "^8.0.0",
+    "ngrx": "0.0.1-security",
+    "reflect-metadata": "~0.1.13",
+    "rxjs": "^6.5.3",
+    "tns-core-modules": "~6.2.0",
+    "zone.js": "~0.10.2"
+  },
+  "devDependencies": {
+    "@angular/cli": "^8.3.18",
+    "@angular/compiler-cli": "~8.2.13",
+    "@nativescript/schematics": "^0.7.3",
+    "@ngtools/webpack": "~8.3.18",
+    "nativescript-dev-webpack": "~1.3.0",
+    "node-sass": "^4.13.0",
+    "prettier": "1.19.1",
+    "sass-loader": "^8.0.0",
+    "typescript": "^3.5.3"
+  },
+  "gitHead": "1964ea9e8ca1a0518e0d6370781eedcf6c23db42",
+  "readme": "A simple mobile application to store small bits of personal information safely"
+}

@@ -1,0 +1,93 @@
+<Page>
+    <FlexboxLayout flexDirection="column"
+        height="100%"
+        class="modal">
+
+        <ScrollView height="auto"
+            width="100%"
+            orientation="vertical">
+
+            <StackLayout width="100%"
+                height="auto"
+                orientation="vertical">
+
+                <Form [formGroup]="form">
+
+                    <!-- Name selector -->
+                    <CardView class="cardview"
+                        [class.tablet]="isTablet">
+                        <StackLayout class="cardview-inner">
+
+                            <!-- Name -->
+                            <ns-form-element
+                                [hint]="'item-modal.name-hint' | translate"
+                                [error]="form.controls.name?.dirty ? (form.controls.name?.errors?.message | translate) : null"
+                                [title]="'item-modal.name' | translate">
+                                <TextField class="form-control"
+                                    [class.error]="form.controls?.name?.dirty && !!form.controls.name?.errors"
+                                    autocorrect="true"
+                                    autoCapitalizationType="none"
+                                    returnKeyType="done"
+                                    formControlName="name"></TextField>
+                            </ns-form-element>
+                        </StackLayout>
+                    </CardView>
+
+                    <!-- Value -->
+                    <CardView class="cardview"
+                        [class.tablet]="isTablet">
+                        <StackLayout class="cardview-inner">
+                            <ns-form-element
+                                [hint]="'item-modal.value-hint' | translate"
+                                [error]="form.controls.value?.dirty ? (form.controls.value?.errors?.message | translate) : null"
+                                [title]="'item-modal.value' | translate">
+
+                                <TextView class="form-control"
+                                    height="120"
+                                    [class.error]="form.controls.value?.dirty && !!form.controls.value?.errors"
+                                    autocorrect="true"
+                                    autoCapitalizationType="none"
+                                    returnKeyType="done"
+                                    formControlName="value"></TextView>
+
+                            </ns-form-element>
+                        </StackLayout>
+                    </CardView>
+
+                    <!-- Comments -->
+                    <CardView class="cardview"
+                        [class.tablet]="isTablet">
+                        <StackLayout class="cardview-inner">
+                            <ns-form-element
+                                [hint]="'item-modal.comment-hint' | translate"
+                                [error]="form.controls.comment?.dirty ? (form.controls.comment?.errors?.message | translate) : null"
+                                [title]="'item-modal.comment' | translate">
+                                <TextField class="form-control"
+                                    [class.error]="form.controls.comment?.dirty && !!form.controls.comment?.errors"
+                                    autocorrect="true"
+                                    autoCapitalizationType="none"
+                                    returnKeyType="done"
+                                    formControlName="comment"></TextField>
+                            </ns-form-element>
+                        </StackLayout>
+                    </CardView>
+
+                </Form>
+
+                <CardView class="cardview"
+                    [class.tablet]="isTablet">
+                    <StackLayout class="cardview-inner">
+                        <Button class="form-button"
+                            (tap)="submitForm()"
+                            [isEnabled]="!form.invalid"
+                            [text]="'general.ok-button' | translate"></Button>
+                        <Button class="form-button"
+                            (tap)="cancel()"
+                            [text]="'general.cancel-button' | translate"></Button>
+                    </StackLayout>
+                </CardView>
+
+            </StackLayout>
+        </ScrollView>
+    </FlexboxLayout>
+</Page>

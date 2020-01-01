@@ -1,0 +1,81 @@
+.main {
+    
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    .no-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 20;
+        color: $lightgray;
+        text-align: center;
+        padding: 0 20;
+    }
+
+    .title-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 22;
+        color: $black;
+        background: $white-dark;
+        height: 70;
+        width: 100%;
+        padding: 10 0;
+        margin: 0;
+    }
+
+    .list-arrow-wrapper {
+        height: 100%;
+        width: 50;
+        background-color: transparent;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;        
+    }
+
+    .list-arrow {
+        color: $lightgray;
+        font-size: 20;
+
+        .list-rearrange {
+            border-width: 3;
+            border-color: red;
+            color: $white;
+        }
+    }
+
+    .swipe-button {
+        width: 60;
+        height: 100%;
+        background: $blue02;
+        border-left-width: 1;
+        border-left-color: $white-dark;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .swipe-icon {
+        font-size: 25;
+        color: $white;
+    }
+
+    .list-item-reveal {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        background: $white-dark;
+        color: $darkgray;
+        font-size: 18;
+        padding: 5 10;
+    }
+
+}

@@ -1,0 +1,12 @@
+<RadSideDrawer drawerLocation="Right"
+    [gesturesEnabled]="sideDrawerEnabled"
+    [drawerTransition]="sideDrawerTransition">
+    <StackLayout tkDrawerContent>
+        <ns-sidedrawer></ns-sidedrawer>
+    </StackLayout>
+
+    <page-router-outlet
+        tkMainContent
+        class="page page-content"></page-router-outlet>
+
+</RadSideDrawer>

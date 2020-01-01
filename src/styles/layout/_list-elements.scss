@@ -1,0 +1,70 @@
+.list-wrapper {
+    margin: 0 0 20 0;
+    border-bottom-width: 1;
+    border-bottom-color: $white-dark;
+}
+
+.list-collection {
+    width: 100%;
+    height: 70;
+    padding: 5;
+    border-bottom-width: 1;
+    border-bottom-color: $white-dark;
+    border-bottom-style: solid;
+    background: $background;
+}
+
+.list-collection-icon {
+    width: 40;
+    height: 40;
+    border-radius: 20;
+    background-color: $white-dark;
+    color: $darkgray;
+    font-size: 25;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10;
+}
+
+.list-collection-text {
+    height: auto;
+    width: 100%;
+    font-size: 18;
+    font-weight: 500;
+    color: $darkgray;
+    background: transparent;
+    padding: 0 10;
+}
+
+.list-item {
+    width: 100%;
+    height: 60;
+    padding: 5 10;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border-bottom-width: 1;
+    border-bottom-color: $white-dark;
+    border-bottom-style: solid;
+    background: $background;
+}
+
+.list-item-name {
+    font-size: 18;
+    color: $darkgray;
+}
+
+.list-item-comment {
+    font-size: 14;
+    color: $white-dark;
+}
+
+.list-rearrange {
+    background-color: $blue01;
+    background: $blue01;
+    
+    Label {
+        color: $white;
+    }
+}

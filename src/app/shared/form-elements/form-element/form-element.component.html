@@ -1,0 +1,31 @@
+<FlexboxLayout class="form-element-wrapper"
+    [class.tablet]="isTablet">
+
+    <StackLayout orientation="horizontal"
+        [width]="isTablet ? '30%' : 'auto'"
+        verticalAlignment="center"
+        horizontalAlignment="left">
+        <Label class="form-label"
+            [class.tablet]="isTablet"
+            textWrap="true"
+            [text]="title"></Label>
+    </StackLayout>
+
+    <FlexboxLayout [width]="isTablet ? '70%' : 'auto'"
+        class="inner-wrapper">
+
+        <ng-content></ng-content>
+
+        <Label class="form-hint"
+            *ngIf="!!hint && (!error || error === '')"
+            textWrap="true"
+            [text]="hint"></Label>
+
+        <Label class="form-error"
+            *ngIf="!!error"
+            textWrap="true"
+            [text]="error">
+        </Label>
+
+    </FlexboxLayout>
+</FlexboxLayout>

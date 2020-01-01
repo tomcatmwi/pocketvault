@@ -1,0 +1,22 @@
+//  The 7-1 design pattern: 7 directories, 1 main.scss file
+
+//  Variables, mixins, imports, SASS helpers
+@import './abstracts/';
+
+//  Boilerplate code, the most basic stuff only
+@import './base/';
+
+//  Minor components like form elements, page child components, etc
+@import './components/';
+
+//  Page components
+@import './pages/';
+
+//  Generic page layout styles: grids, sidebars, footers
+@import './layout/';
+
+//  NativeScript theme files
+@import './themes/';
+
+//  Third party stylesheets - we don't have any to import
+//  @import './vendors/';

@@ -1,0 +1,128 @@
+@keyframes menu-selected {
+    0% { background-color: $blue02; border-bottom-color: $blue04; }
+    50% { background-color: $blue04; border-bottom-color: $blue01; }
+    100% { background-color: $blue02; border-bottom-color: $blue04; }
+}
+
+.sidedrawer {
+    background-color: $blue02;
+    padding: 0;
+    height: 100%;
+
+    .header {
+        padding: 10;
+        background: $background;
+        width: 100%;
+        margin: 0;
+        color: $darkgray;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .profile-icon {
+        border-radius: 45;
+        margin: 10 0 10 0;
+        width: 90;
+        height: 90;
+        background-color: transparent;
+        border-width: 1;
+        padding: 5;
+        border-color: $lightgray;
+        border-style: solid;
+
+        &.tablet {
+            width: 120;
+            height: 120;
+            border-radius: 60;
+            margin: 15 0 15 0;
+        }
+    }
+
+    .profile-name {
+        font-weight: bold;
+        font-size: 18;
+        color: $darkgray;
+
+        &.tablet {
+            font-size: 20;
+        }
+    }
+
+    .profile-email {
+        font-size: 14;
+        color: $lightgray;
+
+        &.tablet {
+            font-size: 17;
+        }
+    }
+
+    .menuitem {
+        border-bottom-style: solid;
+        border-bottom-color: $blue04;
+        border-bottom-width: 1;
+        padding: 10;
+        color: $blue01;
+        background-color: $blue02;
+        height: 50;
+        width: 100%;
+        color: $background;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 16;
+
+        &.tablet {
+            font-size: 20;
+            height: 60;
+        }
+
+        &.selected {
+            animation: menu-selected 0.5s linear 0s 1 normal forwards;
+        }
+    }
+
+    .menuitem-wrapper {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .about-wrapper {
+        height: 100%;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 20;
+    }
+
+    .about {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .about-logo {
+        width: 50;
+        height: 50;
+        border-radius: 25;
+        margin: 0 15 0 0;
+    }
+
+    .about-text {
+        color: $background;
+        font-size: 12;
+        text-align: left;
+    }
+
+    .copyright-wrapper {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+
+}

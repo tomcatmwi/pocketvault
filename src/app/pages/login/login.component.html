@@ -1,0 +1,122 @@
+<Page>
+
+    <GridLayout columns="*"
+        rows="*, auto"
+        width="100%">
+
+        <StackLayout col="0"
+            row="0"
+            [ngSwitch]="!!user?.uid"
+            class="login"
+            verticalAlignment="center"
+            horizontalAlignment="center">
+
+            <!-- User not logged in -->
+            <ng-container *ngSwitchCase="false">
+
+                <StackLayout class="title-wrapper">
+
+                    <Label class="h3"
+                        textWrap="true"
+                        textAlignment="center"
+                        [text]="'login.welcome' | translate"></Label>
+                    <Label *ngIf="!user?.error"
+                        class="h5"
+                        textWrap="true"
+                        textAlignment="center"
+                        [text]="'login.taplogin' | translate"></Label>
+                    <Label *ngIf="user?.error"
+                        textWrap="true"
+                        class="h5 danger"
+                        textAlignment="center"
+                        [text]="user?.error"></Label>
+                </StackLayout>
+
+                <StackLayout [ngSwitch]="spinner"
+                    class="title-wrapper">
+                    <Button *ngSwitchCase="false"
+                        (tap)="login()"
+                        class="login-icon fa-brand"
+                        [text]="'fa-google' | fonticon"></Button>
+
+                    <ActivityIndicator
+                        *ngSwitchCase="true"
+                        busy="true"
+                        class="spinner-big"></ActivityIndicator>
+                </StackLayout>
+
+                <ng-container *ngTemplateOutlet="languageselector"></ng-container>
+
+            </ng-container>
+
+            <!-- User is logged in -->
+            <ng-container *ngSwitchCase="true">
+
+                <StackLayout class="title-wrapper">
+                    <Label class="h3"
+                        textWrap="true"
+                        textAlignment="center"
+                        [text]="'login.hi' | translate:{ name: user?.name }"></Label>
+                    <Label class="h5"
+                        textWrap="true"
+                        textAlignment="center"
+                        [text]="'login.tap-image' | translate"></Label>
+                </StackLayout>
+
+                <StackLayout class="title-wrapper"
+                    [ngSwitch]="spinner">
+
+                    <!-- Double FlexboxLayout because border color can't be animated -->
+                    <FlexboxLayout class="login-icon-wrapper outer"
+                        [class.glow]="vaultReady">
+                        <FlexboxLayout class="login-icon-wrapper inner">
+                            <Image class="login-icon"
+                                *ngSwitchCase="false"
+                                (tap)="gotoMain()"
+                                [src]="user?.picture">
+                            </Image>
+                        </FlexboxLayout>
+                    </FlexboxLayout>
+
+                    <ActivityIndicator
+                        *ngSwitchCase="true"
+                        busy="true"
+                        class="spinner-big"></ActivityIndicator>
+                </StackLayout>
+
+                <ng-container *ngTemplateOutlet="languageselector">
+                </ng-container>
+
+                <ns-icon-link (onTap)="logout()"
+                    text="login.logout"
+                    icon="fa-sign-out"></ns-icon-link>
+
+            </ng-container>
+
+        </StackLayout>
+
+        <!-- Help link -->
+
+        <ns-icon-link (onTap)="router.navigate(['/help'])"
+            col="0"
+            row="1"
+            text="login.help"
+            icon="fa-question"></ns-icon-link>
+
+    </GridLayout>
+</Page>
+
+<!-- Language selector link -->
+<ng-template #languageselector>
+
+    <CardView class="cardview"
+        [class.tablet]="isTablet">
+        <StackLayout class="cardview-inner">
+            <ns-form-element
+                [title]="('login.language' | translate) + ':'">
+                <ns-form-language></ns-form-language>
+            </ns-form-element>
+        </StackLayout>
+    </CardView>
+
+</ng-template>

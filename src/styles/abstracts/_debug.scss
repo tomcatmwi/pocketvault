@@ -1,0 +1,87 @@
+.debug {
+    background: black;
+    color: lime;
+    font-size: 14;
+    padding: 10;
+}
+
+.border {
+    border-width: 1;
+    border-style: solid;
+
+    &.red {
+        border-color: red;
+    }
+
+    &.green {
+        border-color: green;
+    }
+
+    &.yellow {
+        border-color: yellow;
+    }
+
+    &.blue {
+        border-color: blue;
+    }
+
+    &.purple {
+        border-color: blueviolet;
+    }
+
+    &.black {
+        border-color: black;
+    }
+
+    &.white {
+        border-color: white;
+    }
+
+    &.pink {
+        border-color: pink;
+    }
+
+    &.lime {
+        border-color: limegreen;
+    }
+
+    &.thick {
+        border-width: 3;
+    }
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-blue {
+    background-color: blue;
+}
+
+.bg-pink {
+    background-color: pink;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-yellow {
+    background-color: yellow;
+}
+
+.bg-purple {
+    background-color: blueviolet;
+}
+
+.bg-gray {
+    background-color: gray;
+}

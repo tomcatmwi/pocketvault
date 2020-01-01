@@ -1,0 +1,72 @@
+.main-content {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background-color: $background;
+}
+
+.danger {
+    color: $danger;
+    font-weight: bold;
+}
+
+.fa-icon {
+    margin-right: 8;
+    font-size: 16;
+}
+
+.bold {
+    font-weight: 800;
+}
+
+.cardview {
+    margin: 10;
+    border-radius: 5;
+    width: 90%;
+
+    .cardview-inner {
+        padding: 10;
+    }
+
+    &.full {
+        width: 100%;
+        margin: 0;
+    }
+
+    &.tablet {
+        width: 60%;
+    }
+}
+
+.spinner-big {
+    width: 100;
+    height: 100;
+    color: $blue01;
+}
+
+.spinner-small {
+    width: 60;
+    height: 60;
+    color: $blue01;
+}
+
+.icon-button {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50;
+    height: 50;
+    background-color: $white-dark;
+    color: $black;
+    border-radius: $button-radius;
+}
+
+.round-button {
+    width: 80;
+    height: 80;
+    border-radius: 40;
+    background-color: $blue02;
+    color: $white;
+    font-size: 40;
+    margin: 0 20 20 auto;
+}

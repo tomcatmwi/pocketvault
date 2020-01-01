@@ -1,0 +1,215 @@
+<Page>
+    <ns-actionbar (onBackButton)="goUp()"
+        [backButton]="!!title"
+        [title]="title ? title : ('app.title' | translate)"></ns-actionbar>
+
+    <!-- GridLayout is required to position New Item button -->
+    <GridLayout rows="*, auto"
+        columns="*, auto"
+        class="main">
+
+        <!-- Content area -->
+        <GridLayout rows="*"
+            columns="*"
+            row="0"
+            col="0"
+            rowSpan="2"
+            colSpan="2"
+            width="100%"
+            height="100%"
+            class="main-content">
+
+            <!-- Subcollections -->
+            <ScrollView width="100%"
+                height="100%"
+                [ngSwitch]="!!collections?.length || !!items?.length"
+                orientation="vertical">
+
+                <GridLayout *ngSwitchCase="true"
+                    width="100%"
+                    height="auto"
+                    rows="auto,auto"
+                    (tap)="rearrangeEnable(false)"
+                    [paddingBottom]="collections?.length || items?.length ? 80 : 0">
+
+                    <!-- List of collections -->
+                    <StackLayout row="0"
+                        col="0"
+                        orientation="vertical">
+
+                        <RadListView #collectionList
+                            height="100%"
+                            [items]="collections"
+                            swipeActions="true"
+                            [itemReorder]="allowRearrange"
+                            reorderMode="Drag"
+                            (itemReordered)="reorderCollection($event)"
+                            (itemSwipeProgressStarted)="collectionSwipeStart($event)">
+
+                            <!-- Normal content -->
+                            <ng-template tkListItemTemplate
+                                let-collection="item">
+
+                                <GridLayout rows="*"
+                                    columns="auto,*,auto"
+                                    class="list-collection"
+                                    [class.list-rearrange]="allowRearrange"
+                                    [style.background]="allowRearrange ? '#3c78d8' : '#fbfef9'"
+                                    (longPress)="rearrangeEnable()"
+                                    (doubleTap)="showDateCollection(collection)"
+                                    (tap)="allowRearrange ? rearrangeEnable() : tapCollection(collection.id)">
+
+                                    <!-- Icon -->
+                                    <FlexboxLayout class="list-collection-icon"
+                                        [style.background]="collection?.icon?.background"
+                                        row="0"
+                                        col="0">
+                                        <Label [class]="collection?.icon?.name?.split(' ')[0]"
+                                            [style.color]="collection?.icon?.color"
+                                            [text]="collection?.icon?.name?.split(' ')[1] | fonticon"></Label>
+
+                                    </FlexboxLayout>
+
+                                    <!-- Collection's name -->
+                                    <StackLayout row="0"
+                                        col="1"
+                                        orientation="vertical"
+                                        horizontalAlignment="left"
+                                        verticalAlignment="center"
+                                        class="list-collection-text">
+                                        <Label [text]="collection?.name"></Label>
+                                    </StackLayout>
+
+                                    <!-- Chevron right -->
+                                    <FlexboxLayout row="0"
+                                        col="2"
+                                        horizontalAlignment="center"
+                                        verticalAlignment="center"
+                                        class="list-arrow-wrapper">
+                                        <Label class="fa list-arrow"
+                                            [style.color]="allowRearrange ? '#FFFFFF' : '#a2a2a2'"
+                                            [text]="'fa-chevron-right' | fonticon"></Label>
+                                    </FlexboxLayout>
+
+                                </GridLayout>
+                            </ng-template>
+
+                            <!-- Swiped content -->
+                            <GridLayout *tkListItemSwipeTemplate
+                                rows="*"
+                                columns="*, auto, auto"
+                                width="100%"
+                                height="100%">
+
+                                <FlexboxLayout id="menuButton"
+                                    (tap)="collectionMenu($event)"
+                                    class="swipe-button "
+                                    horizontalAlignment="center"
+                                    verticalAlignment="center"
+                                    row="0"
+                                    col="2">
+                                    <Label class="fa swipe-icon"
+                                        [text]="'fa-bars' | fonticon"></Label>
+                                </FlexboxLayout>
+
+                            </GridLayout>
+
+                        </RadListView>
+                    </StackLayout>
+
+                    <!-- List of items -->
+                    <StackLayout row="1"
+                        col="0"
+                        orientation="vertical"
+                        class="list-wrapper">
+                        <RadListView #itemList
+                            height="100%"
+                            [items]="items"
+                            swipeActions="true"
+                            [itemReorder]="allowRearrange"
+                            (itemReordered)="reorderItem($event)"
+                            reorderMode="Drag"
+                            (itemSwipeProgressStarted)="itemSwipeStart($event)">
+
+                            <!-- Normal content -->
+                            <ng-template tkListItemTemplate
+                                let-item="item">
+                                <FlexboxLayout (longPress)="rearrangeEnable()"
+                                    (tap)="allowRearrange ? rearrangeEnable() : itemSwipeClose()"
+                                    (doubleTap)="showItemDate(item)"
+                                    class="list-item"
+                                    [style.background]="allowRearrange ? '#3c78d8' : '#fbfef9'"
+                                    [class.list-rearrange]="allowRearrange">
+                                    <Label class="list-item-name"
+                                        [text]="item?.name"></Label>
+                                    <Label *ngIf="item?.comment"
+                                        class="list-item-comment"
+                                        [text]="item?.comment"></Label>
+                                </FlexboxLayout>
+                            </ng-template>
+
+                            <!-- Swiped content -->
+                            <GridLayout *tkListItemSwipeTemplate
+                                rows="*"
+                                columns="*, auto, auto, auto"
+                                width="100%"
+                                height="100%">
+
+                                <FlexboxLayout row="0"
+                                    (tap)="showItem()"
+                                    (swipe)="itemSwipeClose()"
+                                    col="0"
+                                    verticalAlignment="center"
+                                    class="list-item-reveal">
+                                    <Label [textWrap]="true"
+                                        [text]="currentItem?.value"></Label>
+                                </FlexboxLayout>
+
+                                <FlexboxLayout (tap)="copyToClipboard()"
+                                    class="swipe-button"
+                                    row="0"
+                                    col="1">
+                                    <Label class="fa swipe-icon"
+                                        [text]="'fa-copy' | fonticon"></Label>
+                                </FlexboxLayout>
+
+                                <FlexboxLayout id="menuButton"
+                                    (tap)="itemMenu($event)"
+                                    class="swipe-button "
+                                    horizontalAlignment="center"
+                                    verticalAlignment="center"
+                                    row="0"
+                                    col="3">
+                                    <Label class="fa swipe-icon"
+                                        [text]="'fa-bars' | fonticon"></Label>
+                                </FlexboxLayout>
+
+                            </GridLayout>
+
+                        </RadListView>
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- If no items or collections -->
+                <FlexboxLayout *ngSwitchCase="false"
+                    height="100%"
+                    class="no-content">
+                    <Label textWrap="true"
+                        [text]="'main.no-content' | translate"></Label>
+                </FlexboxLayout>
+
+            </ScrollView>
+
+        </GridLayout>
+
+        <!-- Add button -->
+        <Button id="addButton"
+            row="1"
+            col="1"
+            (tap)="tapAddButton()"
+            class="round-button fa"
+            [text]="'fa-plus' | fonticon"></Button>
+
+    </GridLayout>
+
+</Page>

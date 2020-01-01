@@ -1,0 +1,19 @@
+<FlexboxLayout alignItems="center"
+    justifyContent="center"
+    [row]="row" [col]="col">
+
+    <FlexboxLayout (tap)="tap()"
+        class="icon-link">
+
+        <Label class="fa icon"
+            [text]="icon | fonticon"></Label>
+
+        <StackLayout class="text">
+            <Label textWrap="true"
+                textAlignment="left"
+                [text]="text | translate">
+            </Label>
+        </StackLayout>
+
+    </FlexboxLayout>
+</FlexboxLayout>

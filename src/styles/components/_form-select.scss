@@ -1,0 +1,23 @@
+.form-select {
+
+    .picker {
+        padding: 0 5;
+        margin-bottom: 0;
+        background-color: transparent;
+    }
+
+    .caret-down {
+        padding-top: 3;
+    }
+
+    .form-select-item {
+        padding: 10;
+        font-size: $font-normal;
+
+        &.selected {
+            color: $black;
+            font-weight: bold;
+        }
+    }
+}
+

@@ -1,0 +1,37 @@
+<GridLayout rows="*"
+    columns="*" class="form-element form-select"
+    orientation="horizontal"
+    verticalAlignment="center"
+    horizontalAlignment="left"
+    *ngIf="locales && currentLocale">
+
+    <PickerField row="0"
+        col="0" [pickerTitle]="'login.change-language' | translate"
+        [selectedValue]="currentLocale?.key"
+        textField="name"
+        valueField="key"
+        modalAnimated="true"
+        class="picker"
+        androidCloseButtonIcon="ic_delete"
+        (pickerClosed)="changeLocale($event)"
+        zIndex="1000"
+        [items]="locales">
+
+        <ng-template let-item="item">
+            <StackLayout class="form-select">
+                <Label class="form-select-item"
+                    [class.selected]="item.key === currentLocale?.key"
+                    [text]="item.name"></Label>
+            </StackLayout>
+        </ng-template>
+
+    </PickerField>
+
+    <Label row="0" col="0"
+        width="100%"
+        textAlignment="right"
+        class="fas caret-down"
+        zIndex="100"
+        [text]="'fa-caret-down' | fonticon"></Label>
+
+</GridLayout>

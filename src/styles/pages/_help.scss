@@ -1,0 +1,21 @@
+.help-page {
+
+    .help-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        width: 100%;
+        padding: 10;
+        background-color: $white-dark;
+    }
+
+    .header-button {
+        margin: 0 10;
+        width: 200;
+    }
+
+    .help {
+        padding: 20;
+    }
+}

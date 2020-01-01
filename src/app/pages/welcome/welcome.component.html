@@ -1,0 +1,94 @@
+<Page padding="0">
+
+    <GridLayout columns="*"
+        rows="*,auto,10,auto,*"
+        (swipe)="swipe($event)"
+        class="welcome">
+
+        <StackLayout col="0"
+            row="1"
+            orientation="vertical"
+            horizontalAlignment="center">
+            <Label class="panel-title"
+                [class.tablet]="isTablet"
+                textWrap="true"
+                [text]="'tutorial.title0' + currentPage | translate"></Label>
+            <Label class="panel-text"
+                [class.tablet]="isTablet"
+                textWrap="true"
+                [text]="'tutorial.text0' + currentPage | translate"></Label>
+        </StackLayout>
+
+        <!-- Wrapper - this hides images that slide out of view -->
+        <!-- It's a GridLayout because Image 01 and Image 02 should be at the same position -->
+        <GridLayout col="0"
+            row="1"
+            (tap)="gotoLogin();"
+            columns="*"
+            rows="*"
+            class="slider-mask"
+            [class.tablet]="isTablet">
+
+            <!-- Image 01 - this is what you see -->
+            <FlexboxLayout class="gfx"
+                col="0"
+                row="0"
+                [ngClass]="image01.class">
+                <Image class="image"
+                    [src]="'~/images/' + image01.src">
+                </Image>
+            </FlexboxLayout>
+
+            <!-- Image 02 - this slides in when the user swipes -->
+            <FlexboxLayout *ngIf="slide"
+                class="gfx"
+                col="0"
+                row="0"
+                [ngClass]="image02.class">
+                <Image class="image"
+                    [src]="'~/images/' + image02.src">
+                </Image>
+            </FlexboxLayout>
+        </GridLayout>
+
+        <!-- Bottom row -->
+        <GridLayout width="100%"
+            height="auto"
+            rows="35"
+            columns="*,auto"
+            col="0"
+            row="3">
+
+            <!-- Circles -->
+            <FlexboxLayout class="circles"
+                col="0"
+                row="0"
+                colspan="2">
+                <Label *ngFor="let x of pages; let i = index"
+                    (tap)="gotoPage(i+1)"
+                    class="circle"
+                    [ngClass]="i+1 === currentPage ? 'fas' : 'fa'"
+                    [text]="'fa-circle' | fonticon"></Label>
+            </FlexboxLayout>
+
+            <!-- Language selector -->
+            <FlexboxLayout *ngIf="locale"
+                row="0"
+                col="1"
+                class="language-selector">
+                <Label class="fas language-arrow"
+                    (tap)="changeLanguage(-1);"
+                    [text]="'fa-caret-left' | fonticon"></Label>
+                <Label class="language-selector-text"
+                    [text]="locale?.id"></Label>
+                <Label class="fas language-arrow"
+                    (tap)="changeLanguage(1);"
+                    [text]="'fa-caret-right' | fonticon"></Label>
+            </FlexboxLayout>
+
+
+        </GridLayout>
+
+    </GridLayout>
+
+</Page>

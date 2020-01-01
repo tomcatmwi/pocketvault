@@ -1,0 +1,98 @@
+.form-icon-selector {
+    background: $background;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: auto;
+
+    .group-wrapper {
+        width: auto;
+        height: auto;
+        padding: 0 5;
+        overflow: hidden;
+        margin: 0;
+        text-align: left;
+    }
+    
+    .form-icon-wrapper {
+        width: 90;
+        height: 90;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: $lightgray;
+        color: $darkgray;
+        border-radius: 45;
+        border-width: 1;
+        border-color: $lightgray;
+    }
+
+    .collection-icon {
+        font-size: 50;
+        color: $darkgray;
+    }
+
+    .small-label {
+        font-size: 14;
+        color: $lightgray;
+    }
+
+    .scroller-wrapper {
+        margin: 5 0;
+        border-width: 1;
+        border-color: $lightgray;
+        border-radius: $button-radius;
+        height: auto;
+        width: 100%;
+        padding: 5;
+    }
+
+    .scroller-icon-wrapper {
+        padding: 5;
+        margin: 0 5;
+        width: 50;
+        height: 50;
+        color: $darkgray;
+        background-color: transparent;
+        border-radius: $button-radius;
+        font-size: 26;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        &.selected {
+            background-color: $blue03;
+            color: $black;
+        }        
+    }
+
+    .color-selector {
+        border-width: 1;
+        border-color: $lightgray;
+        width: 35;
+        height: 35;
+        padding: 0;
+        border-radius: $button-radius;
+    }
+
+    .radio-button-wrapper {
+        padding: 3 0;
+        font-size: 14;
+        color: $darkgray;
+        height: auto;
+        width: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .radio-button {
+        margin: 0 10 0 0;
+    }
+
+    .active {
+        color: $black;
+    }
+}

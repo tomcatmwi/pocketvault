@@ -1,0 +1,51 @@
+<Page>
+    <ns-actionbar [backButton]="true"
+        [menu]="false"
+        (onBackButton)="goBack()"
+        [title]="'settings.title' | translate"></ns-actionbar>
+
+    <StackLayout orientation="vertical"
+        width="100%"
+        height="100%"
+        class="settings">
+
+        <ScrollView height="100%"
+            width="100%"
+            orientation="vertical">
+
+            <ListView height="auto"
+                [items]="items">
+                <ng-template let-item="item"
+                    let-i="index">
+
+                    <GridLayout rows="*"
+                        columns="*,auto"
+                        (tap)="tapSetting(i)"
+                        class="list-item">
+
+                        <StackLayout row="0"
+                            col="0"
+                            height="100%"
+                            verticalAlignment="center">
+                            <Label textWrap="true"
+                                [text]="item | translate"></Label>
+                        </StackLayout>
+                        <StackLayout row="0"
+                            col="1"
+                            height="100%"
+                            width="auto"
+                            verticalAlignment="center">
+                            <Label class="fa list-arrow"
+                                [text]="'fa-chevron-right' | fonticon"></Label>
+                        </StackLayout>
+
+                    </GridLayout>
+
+                </ng-template>
+            </ListView>
+
+        </ScrollView>
+
+
+    </StackLayout>
+</Page>

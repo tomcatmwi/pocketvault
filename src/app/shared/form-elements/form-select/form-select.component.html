@@ -1,0 +1,36 @@
+<GridLayout rows="auto"
+    columns="*" class="form-element form-select"
+    orientation="horizontal"
+    verticalAlignment="center"
+    horizontalAlignment="left">
+
+    <PickerField row="0"
+        col="0" [pickerTitle]="title"
+        [selectedValue]="selectedValue"
+        textField="text"
+        valueField="value"
+        modalAnimated="true"
+        class="picker"
+        width="100%"
+        zIndex="1000"
+        [androidCloseButtonIcon]="androidCloseButtonIcon ? androidCloseButtonIcon : 'ic_delete'"
+        (pickerClosed)="selectValue($event)"
+        [items]="items">
+
+        <ng-template let-item="item">
+            <StackLayout class="form-select">
+                <Label class="form-select-item"
+                    [class.selected]="item.value === val"
+                    [text]="item.text"></Label>
+            </StackLayout>
+        </ng-template>
+    </PickerField>
+
+    <Label row="0" col="0"
+        width="100%"
+        textAlignment="right"
+        class="fas caret-down"
+        zIndex="100"
+        [text]="'fa-caret-down' | fonticon"></Label>
+
+</GridLayout>

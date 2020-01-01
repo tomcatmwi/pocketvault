@@ -1,0 +1,528 @@
+{
+    "en-US": {
+        "login": {
+            "title": "Please log in with your Google account",
+            "change-language": "Change language",
+            "language": "Language",
+            "logout": "Tap here to log out or try another account",
+            "help": "Tap here for help",
+            "tap-image": "Tap the image to open your Pocket Vault",
+            "hi": "Hi, {{name}}!",
+            "taplogin": "Tap to log in with your Google account",
+            "welcome": "Welcome to Pocket Vault!",
+            "confirm-demo": "Looks like this is the first time you run Pocket Vault. Would you like to generate some demo data just to see how it works?",
+            "confirm-demo-title": "New vault"
+        },
+        "firebase": {
+            "ERROR_BUCKET_NOT_FOUND": "Bucket not found",
+            "ERROR_CANCELED": "Request cancelled",
+            "ERROR_INVALID_CHECKSUM": "Invalid checksum",
+            "ERROR_NOT_AUTHENTICATED": "User not authenticated",
+            "ERROR_NOT_AUTHORIZED": "Operation not authorized",
+            "ERROR_OBJECT_NOT_FOUND": "Object not found",
+            "ERROR_PROJECT_NOT_FOUND": "Project not found",
+            "ERROR_QUOTA_EXCEEDED": "Data quota exceeded",
+            "ERROR_RETRY_LIMIT_EXCEEDED": "Retry limit exceeded",
+            "ERROR_UNKNOWN": "Unknown error",
+            "vault-loaded": "Vault loaded",
+            "cloud-error": "Google Cloud Service error",
+            "new-vault": "New vault created",
+            "vault-error": "Error in vault data!",
+            "vault-decrypted": "Vault decrypted",
+            "vault-decrypt-error": "Unable to decrypt your Vault with the specified Master Password.",
+            "vault-decrypt-error-title": "Invalid password",
+            "connected": "Connected to Google Firebase",
+            "error": "Firebase connection error: ",
+            "logout-error": "Unable to log out from your Google account. Please check your connection and try again.",
+            "login-error": "Error logging in to your Google account!"
+        },
+        "general": {
+            "exit": "Exit",
+            "ok-button": "OK",
+            "button-exit-app": "Exit app",
+            "exit-app-question": "Do you really want to exit?",
+            "cancel-button": "Cancel",
+            "sure-button": "Yes, I am sure",
+            "no-go-back-button": "No, go back",
+            "warning": "Warning",
+            "abort": "Abort",
+            "yes-button": "Yes",
+            "no-button": "No",
+            "modal-cancel": "Cancel and discard entered values?",
+            "clipboard-copied": "Copied to clipboard",
+            "error-title": "Error",
+            "close-button": "Close",
+            "logout-title": "Log out",
+            "logout": "Do you really want to log out?"
+        },
+        "cipher": {
+            "AES": "AES",
+            "AES-description": "The Advanced Encryption Standard (AES) is a U.S. Federal Information Processing Standard (FIPS). It was selected after a 5-year process where 15 competing designs were evaluated. Pocket Vault uses the AES256 variant.",
+            "DES": "DES",
+            "DES-description": "DES is a previously dominant algorithm for encryption, and was published as an official Federal Information Processing Standard (FIPS). DES is now considered to be insecure due to the small key size.",
+            "TripleDES": "TripleDES",
+            "TripleDES-description": "Triple DES applies DES three times to each block to increase the key size. The algorithm is believed to be secure in this form.",
+            "Rabbit-description": "Rabbit is a high-performance stream cipher and a finalist in the eSTREAM Portfolio. It is one of the four designs selected after a 3 1/2-year process where 22 designs were evaluated.",
+            "Rabbit": "Rabbit",
+            "RC4-description": "RC4 is a widely-used stream cipher. It's used in popular protocols such as SSL and WEP.Although remarkable for its simplicity and speed, the algorithm's history doesn't inspire confidence in its security.",
+            "RC4": "RC4",
+            "RC4Drop": "RC4 Drop",
+            "RC4Drop-description": "A safer variant of RC4. It was discovered that the first few bytes of keystream are strongly non-random and leak information about the key. We can defend against this attack by discarding the initial portion of the keystream. This modified algorithm is traditionally called RC4-drop.",
+            "NONE": "No encryption",
+            "NONE-description": "Your data will be stored without any encryption. It will only be protected by your Google account, which may be strong enough, but both Google and the maker of this app will be able to access your data, along with anyone who has or gains access to your account."
+        },
+        "masterpass-modal": {
+            "cipher": "Cipher algorithm:",
+            "cipher-hint": "Choose an encryption algorithm to keep your data safe.",
+            "cipher-title": "Choose a cipher",
+            "masterpass": "Master Password:",
+            "masterpass-hint": "The key to encrypt and decrypt your data",
+            "warning": "Attention: The Master Password will not be stored. It can't be recovered if lost or forgotten. Read the help for details.",
+            "help": "Tap here for further information.",
+            "cant-submit": "Please select a proper Master Password!",
+            "no-encryption": "You selected no encryption. Anyone who accesses your data will be able to easily read it. Are you sure?",
+            "first-run": "Looks like this is the first time you run Pocket Vault. Please select your Master Password and a cipher. You can change either later.",
+            "cancel-text": "Cancel and log out from this Google account?"
+        },
+        "validators": {
+            "no-password": "Please specify a password!",
+            "password-too-short": "This password is too short. It must be at least 8 characters long.",
+            "password-too-long": "Maximum password length is 64 characters.",
+            "string-too-short": "Value is too short.",
+            "string-too-long": "Value is too long."
+        },
+        "menu": {
+            "settings": "Settings",
+            "help": "Help",
+            "exit": "Exit",
+            "logout": "Log out",
+            "search": "Search"
+        },
+        "about": {
+            "title": "Pocket Vault {{ version }}",
+            "copyright": "Pixeldog {{releaseDate}}"
+        },
+        "app": {
+            "title": "Pocket Vault"
+        },
+        "main": {
+            "add-menu": {
+                "new-collection": "New collection",
+                "new-item": "New item",
+                "rearrange": "Rearrange",
+                "paste": "Paste"
+            },
+            "no-content": "This collection is empty. Tap the + button to add items or collections.",
+            "delete-collection-modal-title": "Delete collection",
+            "delete-collection-modal": "Do you really want to delete the collection \"{{ name }}\"?",
+            "delete-item-modal-title": "Delete item",
+            "delete-item-modal": "Do you really want to delete this item?",
+            "creation-date-title": "Creation date",
+            "creation-date-collection": "Collection created: ",
+            "creation-date-item": "Item created: ",
+            "modified-date-item": "Last modified: ",
+            "new-vault": {
+                "title": "New Vault",
+                "0": "This looks like the first time you run Pocket Vault. A new Vault will be generated for you with some sample data as a demonstration.\\n\\nYou can clear your Vault from the Settings panel."
+            },
+            "rearrange-enabled": "Rearrangement mode enabled.\nDrag and drop elements to rearrange them.\nLong press any item to return to normal mode.",
+            "rearrange-disabled": "Rearrangement mode disabled",
+            "item-menu": {
+                "cut": "Cut item",
+                "copy": "Copy item",
+                "edit": "Edit",
+                "delete": "Delete",
+                "show-creation": "Show creation date",
+                "show-value": "Show value"
+            },
+            "collection-menu": {
+                "cut": "Cut collection",
+                "copy": "Copy collection"
+            }
+        },
+        "collection-modal": {
+            "name": "Name of collection",
+            "icon": "Icon",
+            "icon-hint": "Tap the icon preview to change color or background"
+        },
+        "form-icon-selector": {
+            "fa": "Regular",
+            "fa-brand": "Brands",
+            "fas": "Solid",
+            "search": "Search icon...",
+            "search-title": "Search icon",
+            "search-error-title": "Icon not found",
+            "search-error": "No icons match this query.",
+            "fal": "Light"
+        },
+        "item-modal": {
+            "name-hint": "Name of the item, ie. \"PIN code\"",
+            "name": "Label",
+            "value-hint": "The value you'd like to associate with the label: a password, a code, etc",
+            "value": "Value",
+            "comment-hint": "Any notes, remarks, comments to the item (if needed)",
+            "comment": "Notes"
+        },
+        "sample-vault": {
+            "name4": "Personal",
+            "item-name10": "Locker code",
+            "item-comment1": "Dressing room #2, locker #36.",
+            "item-name11": "Social insurance number",
+            "item-name12": "Driving license no.",
+            "name5": "Computer",
+            "item-name16": "Windows password",
+            "item-comment2": "Wi-Fi SSID: \"Home Network\"",
+            "item-name15": "Wi-Fi password",
+            "name6": "Google",
+            "item-name13": "User name",
+            "item-name14": "Password",
+            "name7": "Facebook",
+            "name0": "Credit card",
+            "item-name0": "Card number",
+            "item-comment0": "MasterCard Gold",
+            "item-name1": "Expiry date",
+            "item-name2": "CVV code",
+            "item-name3": "PIN code",
+            "name1": "Family cars",
+            "name2": "Wifey's Toyota Corolla",
+            "item-name4": "VIN number",
+            "item-name5": "Insurance policy number",
+            "item-name6": "Tire size",
+            "name3": "My Honda Civic"
+        },
+        "errors": {
+            "cant-add-collection": "Can't add collection.",
+            "cant-add-item": "Can't add item.",
+            "cant-edit-collection": "Can't edit this collection.",
+            "cant-delete-collection": "Can't delete this collection.",
+            "cant-delete-item": "Can't delete this item.",
+            "cant-edit-item": "Unable to edit item."
+        },
+        "help": {
+            "title": "Help",
+            "button-help": "Help",
+            "button-privacy": "Privacy policy"
+        },
+        "tutorial": {
+            "title01": "Welcome!",
+            "text01": "Pocket Vault helps you to remember tiny bits of information.",
+            "title02": "What you always forget",
+            "title03": "Secure",
+            "text03": "Your data is stored with top tier encryption. Only you can access it.",
+            "title04": "Let's start!",
+            "text04": "Tap to set up your Pocket Vault!",
+            "text02": "Codes, passwords, IDs, numbers... who can remember them all?"
+        },
+        "settings": {
+            "title": "Settings",
+            "clear-vault-title": "Clear vault",
+            "clear-vault": "This will permanently delete ALL data from your Vault! Are you sure?",
+            "vault-cleared": "Vault cleared!",
+            "save-vault-title": "Export vault",
+            "save-vault": "The contents of your Vault will be saved into the Downloads folder in unencrypted {{ format }} format.\nMove the file to a safe storage as soon as possible and delete it permanently from your device!\n",
+            "vault-saved": "Vault saved to Downloads!",
+            "vault-save-error": "Error! Can't export the Vault.",
+            "save-vault-header": "POCKET VAULT\nGenerated: {{ saveDate }}",
+            "menu": {
+                "change-cipher": "Change Master Password and cipher",
+                "export-text": "Export vault to text",
+                "export-json": "Export vault to JSON",
+                "delete-exports": "Delete all exports",
+                "clear-vault": "Clear vault"
+            },
+            "delete-exports-title": "Delete exports",
+            "delete-exports": "All exported files will be zerofilled and deleted from the Downloads folder.\nIf you previously renamed or moved any of these files, you'll have to delete them manually.",
+            "exports-deleted": "{{ count }} files deleted.",
+            "exports-delete-failed": "Failed to delete exported files!",
+            "exports-delete-no-files": "There's nothing to delete!",
+            "exports-cant-safe-delete-file": "{{ errors }} files couldn't be safely deleted. These files are currently not writable or erasable for this app. If you have them open in another app, please close them and try deleting again.\n\n{{ success }} files were successfully deleted.",
+            "values-changed": "Settings changed successfully."
+        },
+        "export": {
+            "date-created": "Created",
+            "date-last-modified": "Last modified"
+        },
+        "search": {
+            "search": "Search text",
+            "checkbox-item-titles": "Search in item titles",
+            "checkbox-item-values": "Search in item values",
+            "checkbox-collections": "Search in collection names",
+            "title": "Search the Vault",
+            "not-found": "No search results to show",
+            "start-search": "Try again with different settings"
+        },
+        "firestore": {
+            "save-successful": "Vault saved",
+            "save-error": "Unable to save Vault to the cloud:\n{{ error }}"
+        },
+        "version": {
+            "app-id": "App ID",
+            "version-name": "Version name",
+            "version-code": "Version code",
+            "version-title": "Version information"
+        }
+    },
+    "hu-HU": {
+        "login": {
+            "title": "Lépj be a Google azonosítóddal",
+            "change-language": "Nyelvválasztás",
+            "language": "Nyelv",
+            "logout": "Másik fiók választásához tapogass ide",
+            "help": "Tapizz ide segítségért",
+            "tap-image": "Érintsd meg az ikont a belépéshez",
+            "hi": "Szia, {{name}}!",
+            "taplogin": "Lépj be a Google fiókoddal",
+            "welcome": "Üdvözöl a Zsebtrezor!",
+            "confirm-demo": "Úgy tűnik, először használod a Zsebtrezort. Szeretnél egy bemutató adatbázist generálni, hogy lásd, hogyan működik?",
+            "confirm-demo-title": "Új trezor"
+        },
+        "firebase": {
+            "ERROR_BUCKET_NOT_FOUND": "Az adattár (bucket) nincs meg",
+            "ERROR_CANCELED": "A lekérdezés megszakadt",
+            "ERROR_INVALID_CHECKSUM": "Érvénytelen ellenőrzőösszeg",
+            "ERROR_NOT_AUTHENTICATED": "A felhasználói jogosultság hiányzik",
+            "ERROR_NOT_AUTHORIZED": "A művelet nem hajtható végre",
+            "ERROR_OBJECT_NOT_FOUND": "Nincs meg a keresett objektum",
+            "ERROR_PROJECT_NOT_FOUND": "Nincs meg a projekt",
+            "ERROR_QUOTA_EXCEEDED": "Elérted az adattárolási korlátot",
+            "ERROR_RETRY_LIMIT_EXCEEDED": "Az újrapróbálási korlát túllépve",
+            "ERROR_UNKNOWN": "Ismeretlen hiba",
+            "vault-loaded": "Trezor betöltve",
+            "cloud-error": "Hiba a Google felhőszolgáltatásában",
+            "new-vault": "Új trezor létrehozva",
+            "vault-error": "Hibás trezor!",
+            "vault-decrypted": "Trezor kinyitva",
+            "vault-decrypt-error": "A megadott Mesterjelszó helytelen.",
+            "vault-decrypt-error-title": "Helytelen jelszó",
+            "connected": "Csatlakozva a Google Firebase-hez",
+            "error": "Firebase csatlakozási hiba: ",
+            "logout-error": "Nem sikerült kilépni a Google fiókból. Ellenőrizd a netkapcsolatot, és próbáld meg újra!",
+            "login-error": "Nem sikerült belépni a Google fiókba!"
+        },
+        "general": {
+            "exit": "Kilépés",
+            "ok-button": "OK",
+            "button-exit-app": "Kilépés",
+            "exit-app-question": "Tényleg ki szeretnél lépni?",
+            "cancel-button": "Mégsem",
+            "sure-button": "Igen, biztos",
+            "no-go-back-button": "Nem, kijavítom",
+            "warning": "Figyelmeztetés",
+            "abort": "Elvetés",
+            "yes-button": "Igen",
+            "no-button": "Nem",
+            "modal-cancel": "Visszavonod a műveletet?",
+            "clipboard-copied": "Vágólapra másolva",
+            "error-title": "Hiba",
+            "close-button": "Bezárás",
+            "logout-title": "Kilépés",
+            "logout": "Valóban ki szeretnél lépni?"
+        },
+        "cipher": {
+            "AES": "AES",
+            "AES-description": "Az Advanced Encryption Standard az Egyesült Államok Szövetségi Információ-feldolgozási Szabványának (FIPS) része. Ötéves kiértékelési eljárás során választották ki kormányzati használatra 15 pályázó közül. A Zsebtrezor az AES256 változatot használja.",
+            "DES": "DES",
+            "DES-description": "A DES korábban egyeduralkodó titkosítási eljárás volt. Az Egyesült Államok Szövetségi Információ-feldolgozási Szabványának (FIPS) része. A DES ma már nem tekinthető biztonságosnak a kulcs rövidsége miatt.",
+            "TripleDES": "TripleDES",
+            "TripleDES-description": "A Triple DES a DES algoritmus háromszoros alkalmazása. Minden egyes ismétlés növeli a kulcs méretét. Az algoritmus így biztonságosnak tekinthető.",
+            "Rabbit-description": "A Rabbit egy nagy sebességű adatforgalmi titkosító módszer. Az ESTREAM európai kriptográfus-szövetség portfoliójának első helyezettje, illetve egyike annak a négy algoritmusnak, amelyeket három és fél éves eljárás során huszonkettő közül a legjobbnak választottak.",
+            "Rabbit": "Rabbit",
+            "RC4-description": "Az RC4 egy széles körben alkalmazott titkosítási módszer. Olyan elterjedt adatforgalmi protokollokhoz is használják, mint az SSL vagy a WEP. Bár egyszerűsége és gyorsasága figyelemreméltó, a tapasztalatok nem indokolják a túlzott bizalmat iránta.",
+            "RC4": "RC4",
+            "RC4Drop": "RC4 Drop",
+            "RC4Drop-description": "Az RC4 biztonságosabb változata. Fejlesztői felfedezték, hogy az eredeti RC4 kulcs első néhány byte-ja nem véletlenszerű, ez pedig információt árul el a kulcsról. A kulcs ezen részének kihagyása védelmet nyújt az ilyen megfejtési kísérletek ellen.",
+            "NONE": "Titkosítás nélkül",
+            "NONE-description": "Az adataid titkosítás nélkül kerülnek tárolásra. Csak a Google fiókod biztonsága védi őket. Ez ugyan megfelelően erős védelem, azonban így a Google és a jelen app készítője hozzáférhetnek, illetve bárki más is, aki esetleg feltöri a fiókod."
+        },
+        "masterpass-modal": {
+            "cipher": "Titkosító algoritmus:",
+            "cipher-hint": "Válaszd ki, melyik algoritmussal szeretnéd titkosítani az adataid.",
+            "cipher-title": "Válassz egy algoritmust",
+            "masterpass": "Mesterjelszó:",
+            "masterpass-hint": "Az adataid titkosításához használt jelszó.",
+            "warning": "Figyelem: A Mesterjelszó nem kerül tárolásra sehol, ezért nem lehet újat kérni, ha elveszted. Bővebbet a Súgóban.",
+            "help": "További információért tapizz ide",
+            "cant-submit": "Adj meg helyes Mesterjelszót!",
+            "no-encryption": "Azt választottad, hogy nem szeretnél titkosítást. Ha valaki illetéktelenül hozzáfér az adataidhoz, minden nehézség nélkül el fogja tudni olvasni. Biztos vagy benne, hogy ezt szeretnéd?",
+            "first-run": "Úgy tűnik, először futtatod a Zsebtrezort. Válassz egy Mesterjelszót és egy titkosítási algoritmust. Később mindkettő megváltoztatható.",
+            "cancel-text": "Elveted a műveletet és kilépsz ebből a Google fiókból?"
+        },
+        "validators": {
+            "no-password": "Nem adtál meg jelszót!",
+            "password-too-short": "Ez a jelszó túl rövid. Legalább 8 karakter legyen!",
+            "password-too-long": "A jelszó legfeljebb 64 karakter hosszú lehet.",
+            "string-too-short": "Ez az érték túl rövid.",
+            "string-too-long": "Ez az érték túl hosszú."
+        },
+        "menu": {
+            "settings": "Beállítások",
+            "help": "Segítség",
+            "exit": "Kilépés",
+            "logout": "Kilépés",
+            "search": "Keresés"
+        },
+        "about": {
+            "title": "Zsebtrezor {{ version }}",
+            "copyright": "Pixeldog {{releaseDate}}"
+        },
+        "app": {
+            "title": "Zsebtrezor"
+        },
+        "main": {
+            "add-menu": {
+                "new-collection": "Új gyűjtemény",
+                "new-item": "Új elem",
+                "rearrange": "Lista rendezése",
+                "paste": "Beillesztés"
+            },
+            "no-content": "Ez a gyűjtemény üres. A + gombbal adhatsz hozzá elemeket vagy gyűjteményeket.",
+            "delete-collection-modal-title": "Gyűjtemény törlése",
+            "delete-collection-modal": "Valóban törölni szeretnéd a(z) \"{{ name }}\" gyűjteményt?",
+            "delete-item-modal-title": "Elem törlése",
+            "delete-item-modal": "Valóban törölni szeretnéd ezt az elemet?",
+            "creation-date-title": "Létrehozási idő",
+            "creation-date-collection": "Gyűjtemény létrehozva: ",
+            "creation-date-item": "Elem létrehozva: ",
+            "modified-date-item": "Legutóbbi módosítás: ",
+            "new-vault": {
+                "title": "Új Trezor",
+                "0": "Úgy tűnik, először használod a Zsebtrezort. Az app most egy példaadatbázist generál neked, hogy megismerhesd a működését.\\n\\nHa ki szeretnéd törölni az adatokat, a Beállítások menüből teheted meg."
+            },
+            "rearrange-enabled": "Rendező mód bekapcsolva.\nHúzd az egyes elemeket a sorrend átrendezéséhez!\nNyomd meg hosszan bármelyiket a normál módba való visszatéréshez!",
+            "rearrange-disabled": "Rendező mód kikapcsolva",
+            "item-menu": {
+                "cut": "Elem kivágása",
+                "copy": "Elem másolása",
+                "edit": "Szerkesztés",
+                "delete": "Törlés",
+                "show-creation": "Létrehozás ideje",
+                "show-value": "Érték megjelenítése"
+            },
+            "collection-menu": {
+                "cut": "Gyűjtemény kivágása",
+                "copy": "Gyűjtemény másolása"
+            }
+        },
+        "collection-modal": {
+            "name": "Gyűjtemény neve",
+            "icon": "Ikon",
+            "icon-hint": "Tapints az ikonra a szín és a háttérszín megváltoztatásához"
+        },
+        "form-icon-selector": {
+            "fa": "Alapikonok",
+            "fa-brand": "Márkajelek",
+            "fas": "Kitöltött",
+            "search": "Ikon keresése...",
+            "search-title": "Ikon keresése",
+            "search-error-title": "Nincs ilyen ikon",
+            "search-error": "Nincs a keresésnek megfelelő ikon.",
+            "fal": "Light"
+        },
+        "item-modal": {
+            "name-hint": "Az elem neve, pl. \"PIN kód\"",
+            "name": "Címke",
+            "value-hint": "A címkéhez tartozó adat, pl. jelszó, kód, stb",
+            "value": "Érték",
+            "comment-hint": "Jegyzet, megjegyzés az elemhez (ha szükséges)",
+            "comment": "Megjegyzés"
+        },
+        "sample-vault": {
+            "name4": "Személyes",
+            "item-name10": "Szekrény kódja",
+            "item-comment1": "2. öltöző, 36. szekrény",
+            "item-name11": "Társadalombiztosítási szám",
+            "item-name12": "Vezetői engedély száma",
+            "name5": "Számítógép",
+            "item-name16": "Windows jelszó",
+            "item-comment2": "Wi-fi SSID: \"Otthoni hálózat\"",
+            "item-name15": "Wi-fi jelszó",
+            "name6": "Google",
+            "item-name13": "Felhasználónév",
+            "item-name14": "Jelszó",
+            "name7": "Facebook",
+            "name0": "Bankkártya",
+            "item-name0": "Kártya száma",
+            "item-comment0": "MasterCard Gold",
+            "item-name1": "Lejárat",
+            "item-name2": "CVV kód",
+            "item-name3": "PIN kód",
+            "name1": "A család autói",
+            "name2": "Az asszony Toyota Corollája",
+            "item-name4": "Egyedi azonosítószám",
+            "item-name5": "Biztosítási kötvény száma",
+            "item-name6": "Gumiabroncs mérete",
+            "name3": "Az én Honda Civicem"
+        },
+        "errors": {
+            "cant-add-collection": "Nem sikerült felvenni a gyűjteményt.",
+            "cant-add-item": "Nem sikerült hozzáadni az elemet.",
+            "cant-edit-collection": "Nem sikerült módosítani ezt a gyűjteményt.",
+            "cant-delete-collection": "Nem sikerült törölni ezt a gyűjteményt.",
+            "cant-delete-item": "Nem sikerült törölni ezt az elemet.",
+            "cant-edit-item": "Nem sikerült módosítani ezt az elemet."
+        },
+        "help": {
+            "title": "Segítség",
+            "button-help": "Segítség",
+            "button-privacy": "Adatvédelem"
+        },
+        "tutorial": {
+            "title01": "Üdvözöllek!",
+            "text01": "A Zsebtrezor megjegyzi neked a mindennapi apró adatokat.",
+            "title02": "Amit mindig elfelejtesz",
+            "title03": "Biztonságos",
+            "text03": "Adataid titkosítás védi a Google felhőszolgáltatásában. Csak te férsz hozzá.",
+            "title04": "Kezdhetjük?",
+            "text04": "Kattints, és máris létrehozhatod saját Zsebtrezorod!",
+            "text02": "Kódok, jelszavak, azonosítók, sorszámok... ki tudja mind megjegyezni?"
+        },
+        "settings": {
+            "title": "Beállítások",
+            "clear-vault-title": "Trezor törlése",
+            "clear-vault": "Véglegesen törölni szeretnél MINDEN adatot a trezorból?",
+            "vault-cleared": "Trezor kiürítve!",
+            "save-vault-title": "Trezor exportálása",
+            "save-vault": "A Trezor tartalma a Letöltések mappába kerül {{ format }} formátumban.\nMielőbb másold a fájlt biztonságos tárhelyre, és töröld a készülékedről!",
+            "vault-saved": "A trezor tartalma elmentve a Letöltések mappába!",
+            "vault-save-error": "Hiba! Nem sikerült menteni a trezor tartalmát.",
+            "save-vault-header": "ZSEBTREZOR\nMentés ideje: {{ saveDate }}",
+            "menu": {
+                "change-cipher": "Mesterjelszó és kulcs megváltoztatása",
+                "export-text": "Exportálás szöveges fájlba",
+                "export-json": "Exportálás JSON fájlba",
+                "delete-exports": "Exportált fájlok törlése",
+                "clear-vault": "Trezor törlése"
+            },
+            "delete-exports-title": "Exportált fájlok törlése",
+            "delete-exports": "Minden exportált fájl biztonságosan törölve lesz a Letöltések mappából.\nHa átneveztél vagy áthelyeztél fájlokat, azokat neked kell eltávolítanod!",
+            "exports-deleted": "{{ count }} fájl biztonságos törlésre került",
+            "exports-delete-failed": "Nem sikerült az exportált fájlok törlése!",
+            "exports-delete-no-files": "Nincs mit törölni!",
+            "exports-cant-safe-delete-file": "{{ errors }} fájl biztonságos törlése nem sikerült. Ezek a fájlok nem írhatóak vagy törölhetőek az app számára. Ha megnyitottad őket egy másik alkalmazással, zárd be azt, és próbáld újra a törlést.\n\n{{ success }} fájl törlése sikerült.",
+            "values-changed": "A beállítások megváltoztatása sikeres."
+        },
+        "export": {
+            "date-created": "Létrehozva",
+            "date-last-modified": "Utolsó módosítás"
+        },
+        "search": {
+            "search": "Keresett szöveg",
+            "checkbox-item-titles": "Keresés az elemek címében",
+            "checkbox-item-values": "Keresés az értékek között",
+            "checkbox-collections": "Keresés a gyűjtemények nevében",
+            "title": "Keresés a Trezorban",
+            "not-found": "Nincs keresési találat",
+            "start-search": "Próbáld újra más beállításokkal!"
+        },
+        "firestore": {
+            "save-successful": "Trezor mentve",
+            "save-error": "Nem sikerült a mentés a felhőbe:\n{{ error }}"
+        },
+        "version": {
+            "app-id": "App ID",
+            "version-name": "Verziónév",
+            "version-code": "Verziókód",
+            "version-title": "Verzióadatok"
+        }
+    }
+}

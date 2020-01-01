@@ -1,0 +1,77 @@
+<StackLayout orientation="vertical"
+    class="sidedrawer"
+    [class.tablet]="isTablet">
+
+    <!-- Header -->
+    <FlexboxLayout class="header"
+        [class.tablet]="isTablet">
+        <Image class="profile-icon"
+            [class.tablet]="isTablet"
+            [src]="user?.picture"></Image>
+        <Label class="profile-name"
+            [class.tablet]="isTablet"
+            [text]="user?.name">
+        </Label>
+        <Label class="profile-email"
+            [class.tablet]="isTablet"
+            [text]="user?.email">
+        </Label>
+    </FlexboxLayout>
+
+    <ScrollView orientation="vertical">
+
+        <FlexboxLayout flexDirection="column">
+
+            <!-- Menu items -->
+            <FlexboxLayout *ngFor="let menuitem of menuitems; let i=index"
+                (tap)="tapItem(i)"
+                class="menuitem"
+                [class.selected]="i === selected"
+                [class.tablet]="isTablet">
+                <FlexboxLayout class="menuitem-wrapper">
+                    <Label marginRight="10"
+                        class="fas"
+                        [text]="menuitem.icon | fonticon"></Label>
+                    <Label [text]="menuitem.text | translate"></Label>
+                </FlexboxLayout>
+                <Label *ngIf="menuitem?.chevron"
+                    class="fa"
+                    [text]="'fa-chevron-right' | fonticon"></Label>
+            </FlexboxLayout>
+
+        </FlexboxLayout>
+
+    </ScrollView>
+
+    <!-- About -->
+    <FlexboxLayout class="about-wrapper">
+
+        <FlexboxLayout class="about"
+            (tap)="versionInfo()">
+            <Image src="~/images/pixeldog.png"
+                class="about-logo">
+            </Image>
+
+            <StackLayout orientation="vertical"
+                verticalAlignment="center">
+                <Label class="about-text"
+                    [text]="'about.title' | translate:{version: about.version}">
+                </Label>
+                <FlexboxLayout class="copyright-wrapper">
+                    <Label class="about-text fa"
+                        marginRight="5"
+                        [text]="'fa-copyright' | fonticon">
+                    </Label>
+
+                    <Label class="about-text"
+                        [text]="'about.copyright' | translate:{releaseDate: about.releaseDate}">
+                    </Label>
+                </FlexboxLayout>
+
+            </StackLayout>
+        </FlexboxLayout>
+
+    </FlexboxLayout>
+
+
+</StackLayout>
