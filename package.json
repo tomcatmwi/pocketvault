@@ -9,9 +9,10 @@
     }
   },
   "scripts": {
-    "bundle": "tns build android --release --bundle --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password process.env.key-store-password --key-store-alias pocketvault --key-store-alias-password process.env.key-store-alias-password --aab --copy-to d:/Project/pocketvault/pocketvault-release.aab",
-    "build": "tns build android --release --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password process.env.key-store-password --key-store-alias pocketvault --key-store-alias-password process.env.key-store-alias-password --copy-to d:/Project/pocketvault/pocketvault-release.apk",
-    "showkey": "keytool -exportcert -list -v -alias pocketvault -keystore ../!keystore/pocketvault.keystore"
+    "bundle": "tns build android --release --bundle --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password qwa5ed6 --key-store-alias pocketvault --key-store-alias-password qwa5ed6 --aab --copy-to d:/Project/pocketvault/pocketvault-release.aab",
+    "build": "tns build android --release --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password qwa5ed6 --key-store-alias pocketvault --key-store-alias-password qwa5ed6 --copy-to d:/Project/pocketvault/pocketvault-release.apk",
+    "showkey": "keytool -exportcert -list -v -alias pocketvault -keystore ../!keystore/pocketvault.keystore",
+    "showfirebasekey": "keytool -exportcert -list -v -alias firebase -keystore ../!keystore/pocketvault-firebase.keystore"
   },
   "description": "A simple mobile application to store small bits of personal information safely",
   "license": "SEE LICENSE IN license.txt",

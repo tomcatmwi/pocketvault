@@ -102,6 +102,8 @@ export class MainComponent {
   @HostListener('loaded')
   pageInit() {
 
+    console.log('Page init called!');
+
     //  Android hardware back button handler
     this._initBackButton();
     this._appService.sideDrawer = true;
@@ -206,6 +208,7 @@ export class MainComponent {
             this._modalService.showModal(NewCollectionComponent, options)
               .then(res => {
                 this._initBackButton();
+                if (!res) return;
                 this._addCollection(res);
               });
             break;
@@ -213,6 +216,7 @@ export class MainComponent {
             this._modalService.showModal(NewItemComponent, options)
               .then(res => {
                 this._initBackButton();
+                if (!res) return;
                 this._addItem(res);
               });
             break;
@@ -333,9 +337,14 @@ export class MainComponent {
       fullscreen: true,
       context: this.currentCollection
     };
+
+    this._deinitBackButton();
+
     this._modalService.showModal(NewCollectionComponent, options)
       .then(res => {
+        this._initBackButton();
         if (!res) return;
+
         this._addCollection({
           id: this.currentCollection.id,
           name: res.name,
@@ -363,8 +372,11 @@ export class MainComponent {
       fullscreen: true,
       context: this.currentItem
     };
+
+    this._deinitBackButton();
     this._modalService.showModal(NewItemComponent, options)
       .then(res => {
+        this._initBackButton();
         if (!res) return;
         this._addItem({
           id: this.currentItem.id,
