@@ -5,6 +5,6 @@ A simple serverless NativeScript application to store encrypted personal data in
 https://play.google.com/store/apps/details?id=com.pixeldog.pocketvault
 
 # Note
-To clone and run it you have to create your own Google Firebase project and replace `google-services.json`.
+To clone and run it you have to create your own Google Firebase project and replace `google-services.json`. I'd appreciate if someone built an iOS version.
 
 Someday I may write a proper readme.
