@@ -27,6 +27,8 @@ import {
   Reorder,
   SwitchCollection,
   SwitchCollectionUp,
+  SortCollections,
+  SortItems,
   Save,
   Copy
 } from '~/app/state/vault';
@@ -45,12 +47,16 @@ export class MainComponent {
   @ViewChild('itemList', { static: false }) itemList: RadListViewComponent;
 
   //  Popup menus
-  addMenuActions = [
+  addMenuActionsTemplate = [
     { id: 0, title: 'main.add-menu.new-collection' },
     { id: 1, title: 'main.add-menu.new-item' },
     { id: 2, title: 'main.add-menu.rearrange' },
-    { id: 3, title: 'main.add-menu.paste' }
+    { id: 3, title: 'main.add-menu.sort-collections' },
+    { id: 4, title: 'main.add-menu.sort-items' },
+    { id: 5, title: 'main.add-menu.paste' },
   ];
+
+  addMenuActions = [];
 
   itemMenuActions = [
     { id: 0, title: 'main.item-menu.cut' },
@@ -98,17 +104,14 @@ export class MainComponent {
   //  NativeScript doesn't destroy the component upon leaving the page, and
   //  therefore ngOnDestroy must be called explicitly to unsubscribe observables.
   //  ngOnInit is also called only once when first navigating to the page.
-
   @HostListener('loaded')
   pageInit() {
-
-    console.log('Page init called!');
 
     //  Android hardware back button handler
     this._initBackButton();
     this._appService.sideDrawer = true;
 
-    this._translateService.translateBatch(this.addMenuActions, null, 'title');
+    this._translateService.translateBatch(this.addMenuActionsTemplate, null, 'title');
     this._translateService.translateBatch(this.collectionMenuActions, null, 'title');
     this._translateService.translateBatch(this.itemMenuActions, null, 'title');
 
@@ -117,12 +120,8 @@ export class MainComponent {
       this._store.pipe(
         select(clipboard)
       ).subscribe(clipboard => {
-        if (clipboard.collection || clipboard.item)
-          this.addMenuActions[3] = { id: 3, title: this._translateService.translate('main.add-menu.paste') }
-        else
-          this.addMenuActions.length = 3;
-
         this._clipboard = clipboard;
+        this._updateAddMenu();
       })
     );
 
@@ -143,6 +142,7 @@ export class MainComponent {
         this.title = !!vault['name'] ? vault['name'] : null;
         this.collections = new ObservableArray(!!vault['collections'] ? vault['collections'].slice(0) : []);
         this.items = new ObservableArray(!!vault['items'] ? vault['items'].slice(0) : []);
+        this._updateAddMenu();
       })
     );
 
@@ -156,6 +156,20 @@ export class MainComponent {
       })
     );
 
+  }
+
+  //  Updates the popup menu depending on the current situation
+  private _updateAddMenu() {
+    this.addMenuActions = this.addMenuActionsTemplate.slice(0);
+
+    if (!this._clipboard.collection && !this._clipboard.item)
+      this.addMenuActions.splice(this.addMenuActions.findIndex(x => x.id === 5), 1);
+
+    if (!this.collections || !this.collections.length)
+      this.addMenuActions.splice(this.addMenuActions.findIndex(x => x.id === 3), 1);
+
+    if (!this.items || !this.items.length)
+      this.addMenuActions.splice(this.addMenuActions.findIndex(x => x.id === 4), 1);
   }
 
   copyToClipboard() {
@@ -222,9 +236,37 @@ export class MainComponent {
             break;
 
           case 2: this.rearrangeEnable(); break;
-          case 3: this._paste(); break;
+          case 3: this.sortCollections(); break;
+          case 4: this.sortItems(); break;
+          case 5: this._paste(); break;
         }
       })
+  }
+
+  sortCollections() {
+    this.collectionSwipeClose();
+    dialogs.confirm({
+      title: this._translateService.translate('main.add-menu.sort-collections'),
+      message: this._translateService.translate('main.sort-confirm'),
+      okButtonText: this._translateService.translate('general.yes-button'),
+      cancelButtonText: this._translateService.translate('general.no-button')
+    }).then(res => {
+      if (!res) return;
+      this._store.dispatch(new SortCollections());
+    });
+  }
+
+  sortItems() {
+    this.collectionSwipeClose();
+    dialogs.confirm({
+      title: this._translateService.translate('main.add-menu.sort-items'),
+      message: this._translateService.translate('main.sort-confirm'),
+      okButtonText: this._translateService.translate('general.yes-button'),
+      cancelButtonText: this._translateService.translate('general.no-button')
+    }).then(res => {
+      if (!res) return;
+      this._store.dispatch(new SortItems());
+    });
   }
 
   //  Shows the local menu for a collection

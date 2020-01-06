@@ -8,8 +8,7 @@ import * as permissions from 'nativescript-permissions';
 import * as fs from "tns-core-modules/file-system"
 import * as dialogs from 'tns-core-modules/ui/dialogs';
 import { ToastyService } from '~/app/services/toasty.service';
-import { FileSystemEntity } from 'tns-core-modules/file-system';
-import { delay } from 'rxjs/operators';
+import { BrowserModule } from '@angular/platform-browser';
 
 declare var android: any;
 
@@ -79,9 +78,9 @@ export class VaultService {
 
         if (!!input.data.id) {
 
-          //  paste from the clipboard
+          //  paste item from clipboard, give it a new id
           if (input.data === input.clipboard)
-            vault.collections.unshift(input.data)
+            vault.collections.unshift({ ...input.data, id: Math.random().toString(36).substring(8) });
 
           //  modify collection
           else {
@@ -178,10 +177,10 @@ export class VaultService {
         if (input.path)
           input.path.forEach(x => vault = vault.collections[x]);
 
-        //  paste item from clipboard
+        //  paste item from clipboard, give it a new id
         if (!!input.data.id) {
           if (input.data === input.clipboard)
-            vault.items.unshift(input.clipboard)
+            vault.items.unshift({ ...input.data, id: Math.random().toString(36).substring(8) });
 
           //  modify item
           else {
@@ -398,5 +397,24 @@ export class VaultService {
 
     });
   }
+
+  //  Sorts items or collections in the current collection alphabetically
+  sort(input, sortWhat: 'collections' | 'items'): Observable<any> {
+
+    let output = { ...input.vault };
+    let vault = output;
+
+    //  find current vault
+    if (input.path)
+      input.path.forEach(x => vault = vault.collections[x]);
+
+    if (!!vault[sortWhat] && !!vault[sortWhat].length)
+      vault[sortWhat].sort((a, b) => a.name > b.name ? 1 : -1);
+
+    return new Observable(observer => {
+      observer.next(output);
+    });
+  }
+
 
 }

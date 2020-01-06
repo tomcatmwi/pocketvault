@@ -24,6 +24,8 @@ export enum VaultActions {
     DeleteCollection = '[Vault] Delete collection',
     AddItem = '[Vault] Add item',
     DeleteItem = '[Vault] Delete item',
+    SortCollections = '[Vault] Sort collections',
+    SortItems = '[Vault] Sort items',
     Save = '[Vault] Save',
     Copy = '[Vault] Copy to clipboard',
     UpdateAndSave = '[Vault] Vault updated and saved',
@@ -124,10 +126,19 @@ export class AddItem implements Action {
     constructor(public payload: VaultItem) { }
 }
 
-
 export class DeleteItem implements Action {
     readonly type: string = VaultActions.DeleteItem;
     constructor(public payload: string) { }
+}
+
+export class SortCollections implements Action {
+    readonly type: string = VaultActions.SortCollections;
+    constructor() { }
+}
+
+export class SortItems implements Action {
+    readonly type: string = VaultActions.SortItems;
+    constructor() { }
 }
 
 export class Save implements Action {
@@ -187,8 +198,10 @@ export type VaultAction =
     SwitchCollectionComplete |
     AddCollection |
     DeleteCollection |
-    DeleteItem |
     AddItem |
+    DeleteItem |
+    SortItems |
+    SortCollections |
     Copy |
     Save |
     Update |

@@ -193,6 +193,41 @@ export class VaultEffects {
         )
     );
 
+    //  Sort collections
+    @Effect()
+    public SortCollections$ = this.action$.pipe(
+        ofType(VaultActions.SortCollections),
+        withLatestFrom(this._store),
+        map(x => ({
+            vault: x[1].vault.data,
+            path: x[1].vault.currentCollection
+        })),
+        switchMap(payload =>
+            this._vaultService.sort(payload, 'collections').pipe(
+                map(result => new UpdateAndSave(result)),
+                catchError(() => of(new Fail()))
+            )
+        )
+    );
+
+    //  Sort items
+    @Effect()
+    public SortItems$ = this.action$.pipe(
+        ofType(VaultActions.SortItems),
+        withLatestFrom(this._store),
+        map(x => ({
+            vault: x[1].vault.data,
+            path: x[1].vault.currentCollection
+        })),
+        switchMap(payload =>
+            this._vaultService.sort(payload, 'items').pipe(
+                map(result => new UpdateAndSave(result)),
+                catchError(() => of(new Fail()))
+            )
+        )
+    );
+
+
     //  Export Vault to a file
     @Effect()
     public Export$ = this.action$.pipe(
