@@ -9,8 +9,8 @@
     }
   },
   "scripts": {
-    "bundle": "tns build android --release --bundle --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password qwa5ed6 --key-store-alias pocketvault --key-store-alias-password qwa5ed6 --aab --copy-to d:/Project/pocketvault/pocketvault-release.aab",
-    "build": "tns build android --release --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password qwa5ed6 --key-store-alias pocketvault --key-store-alias-password qwa5ed6 --copy-to d:/Project/pocketvault/pocketvault-release.apk",
+    "bundle": "tns build android --release --bundle --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password xxxxxxx --key-store-alias pocketvault --key-store-alias-password xxxxxxx --aab --copy-to d:/Project/pocketvault/pocketvault-release.aab",
+    "build": "tns build android --release --clean --key-store-path ../!keystore/pocketvault.keystore --key-store-password xxxxxxx --key-store-alias pocketvault --key-store-alias-password xxxxxxx --copy-to d:/Project/pocketvault/pocketvault-release.apk",
     "showkey": "keytool -exportcert -list -v -alias pocketvault -keystore ../!keystore/pocketvault.keystore",
     "showfirebasekey": "keytool -exportcert -list -v -alias firebase -keystore ../!keystore/pocketvault-firebase.keystore"
   },
