@@ -149,14 +149,10 @@
             "icon-hint": "Tap the icon preview to change color or background"
         },
         "form-icon-selector": {
-            "fa": "Regular",
-            "fa-brand": "Brands",
-            "fas": "Solid",
             "search": "Search icon...",
             "search-title": "Search icon",
             "search-error-title": "Icon not found",
-            "search-error": "No icons match this query.",
-            "fal": "Light"
+            "search-error": "No icons match this query."
         },
         "item-modal": {
             "name-hint": "Name of the item, ie. \"PIN code\"",
@@ -303,7 +299,7 @@
             "halloween": "Halloween",
             "hands": "Hands",
             "health": "Health",
-            "holiday": "Holiday",
+            "holiday": "Christmas",
             "hotel": "Hotel",
             "household": "Household",
             "images": "Images",
@@ -336,7 +332,14 @@
             "vehicles": "Vehicles",
             "weather": "Weather",
             "winter": "Winter",
-            "writing": "Writing"
+            "writing": "Writing",
+            "fitness": "Fitness",
+            "pharmacy": "Pharmacy",
+            "toggle": "Toggles"
+        },
+        "icon-selector": {
+            "category-title": "Icon category",
+            "search-results": "Found {{ icons }} icons"
         }
     },
     "hu-HU": {
@@ -489,14 +492,10 @@
             "icon-hint": "Tapints az ikonra a szín és a háttérszín megváltoztatásához"
         },
         "form-icon-selector": {
-            "fa": "Alapikonok",
-            "fa-brand": "Márkajelek",
-            "fas": "Kitöltött",
             "search": "Ikon keresése...",
             "search-title": "Ikon keresése",
             "search-error-title": "Nincs ilyen ikon",
-            "search-error": "Nincs a keresésnek megfelelő ikon.",
-            "fal": "Light"
+            "search-error": "Nincs a keresésnek megfelelő ikon."
         },
         "item-modal": {
             "name-hint": "Az elem neve, pl. \"PIN kód\"",
@@ -676,7 +675,14 @@
             "vehicles": "Járművek",
             "weather": "Időjárás",
             "winter": "Tél",
-            "writing": "Írás"
+            "writing": "Írás",
+            "fitness": "Fitnesz",
+            "pharmacy": "Gyógyszerek",
+            "toggle": "Kapcsolók"
+        },
+        "icon-selector": {
+            "category-title": "Ikonkategória",
+            "search-results": "A keresésnek {{ icons }} ikon felelt meg"
         }
     }
 }

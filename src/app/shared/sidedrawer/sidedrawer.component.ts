@@ -4,14 +4,11 @@ import { Router } from '@angular/router';
 import { distinctUntilKeyChanged, filter } from 'rxjs/operators';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import * as app from "tns-core-modules/application";
-import * as dialogs from 'tns-core-modules/ui/dialogs';
 import { Store, select } from '@ngrx/store';
 import { currentUser, vault } from '~/app/app.state';
-import { Clear } from '~/app/state/vault/vault.actions';
-import { ChangeMasterPass, ChangeCipher } from '~/app/state/settings/settings.actions';
-import { Logout } from '~/app/state/user/user.actions';
 import { User } from '~/app/state/user/user.state';
 import { TranslateService } from '~/app/services/translate.service';
+import { Page } from 'tns-core-modules/ui/page/page';
 
 const defaults = require('~/app/assets/defaults.json');
 
@@ -66,12 +63,14 @@ export class SidedrawerComponent implements OnInit {
   selected: number = -1;
   about = defaults.about;
   user: User;
+  sideDrawer: RadSideDrawer;
 
   constructor(
     private _appService: AppService,
     private _router: Router,
     private _store: Store<any>,
     private _translateService: TranslateService,
+    private _page: Page
   ) { }
 
   ngOnInit() {
@@ -102,7 +101,6 @@ export class SidedrawerComponent implements OnInit {
 
     this.selected = i;
     const sideDrawer = <RadSideDrawer>app.getRootView();
-
     setTimeout(() => this.selected = -1, 600);
     setTimeout(() => sideDrawer.closeDrawer(), 300);
 
@@ -113,19 +111,9 @@ export class SidedrawerComponent implements OnInit {
   }
 
   logout() {
-
-    dialogs.confirm({
-      title: this._translateService.translate('general.logout-title'),
-      message: this._translateService.translate('general.logout'),
-      okButtonText: this._translateService.translate('general.yes-button'),
-      cancelButtonText: this._translateService.translate('general.no-button')
-    }).then(res => {
-      if (!res) return;
-      this._store.dispatch(new Clear());
-      this._store.dispatch(new ChangeMasterPass(null));
-      this._store.dispatch(new ChangeCipher(null));
-      this._store.dispatch(new Logout());
-    });
+    const sideDrawer = <RadSideDrawer>app.getRootView();
+    sideDrawer.closeDrawer();
+    setTimeout(() => this._appService.logout(), 300);
   }
 
 }

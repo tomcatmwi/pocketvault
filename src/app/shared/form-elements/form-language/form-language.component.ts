@@ -41,6 +41,7 @@ export class FormLanguageComponent {
   }
 
   changeLocale(event) {
+    if (!event.object.selectedIndex) return;
     this._store.dispatch(new ChangeLocale(this.locales[event.object.selectedIndex]));
   }
 

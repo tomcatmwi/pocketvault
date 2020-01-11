@@ -1,11 +1,5 @@
 export interface Vault {
 
-    //  vault content
-    data: string | VaultCollection[] | null;
-
-    //  path to the currently viewed collection
-    currentCollection: string[],
-
     //  is the vault loaded?
     loaded: boolean;
 
@@ -19,6 +13,12 @@ export interface Vault {
     //  timestamp of last successful change
     //  used to watch changes in main.component
     lastChanged: number,
+
+    //  vault content
+    data: string | VaultCollection[] | null;
+
+    //  path to the currently viewed collection
+    currentCollection: string[],
 
     //  clipboard to store copied/cut elements in main.component
     clipboard: {
@@ -72,8 +72,10 @@ export interface VaultCollection {
 //  Icon for collections
 export interface Icon {
     name: string | null;
+    label?: string;
     color?: string;
     background?: string;
+    class?: string;
 }
 
 //  Clipboard - to copy and paste items and collections

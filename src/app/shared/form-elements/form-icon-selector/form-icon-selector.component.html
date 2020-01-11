@@ -1,20 +1,21 @@
 <GridLayout rows="auto,30,auto"
-    columns="*,*" class="form-icon-selector">
+    columns="auto,*"
+    class="form-icon-selector">
 
-    <!-- Icon display -->
+    <!-- Currently selected icon -->
     <StackLayout class="group-wrapper"
         row="0" col="0"
         colSpan="3"
         width="100%">
 
         <FlexboxLayout class="form-icon-wrapper"
-            [style.background]="icon.background">
+            [style.background]="icon?.background">
 
             <Label *ngIf="icon && !spinner"
                 class="collection-icon"
-                [ngClass]="icon?.name?.substr(0, icon.name.indexOf(' '))"
+                [ngClass]="icon?.class"
                 [style.color]="icon?.color"
-                [text]="icon?.name?.substr(icon?.name?.indexOf(' ')+1, icon?.name?.length) | fonticon"></Label>
+                [text]="('fa-' + icon?.name) | fonticon"></Label>
 
             <ActivityIndicator
                 *ngIf="spinner"
@@ -25,23 +26,13 @@
         </FlexboxLayout>
     </StackLayout>
 
-    <!-- Set selectors -->
-    <StackLayout row="0"
-        class="group-wrapper"
-        col="0" orientation="vertical"
-        horizontalAlignment="left"
-        verticalAlignment="top">
-
-        <FlexboxLayout *ngFor="let iSet of iconSets; let i=index"
-            (tap)="changeIconSet(i)"
-            class="radio-button-wrapper">
-
-            <Label class="fa radio-button"
-                [text]="(iconSet===i ? 'fa-dot-circle' : 'fa-circle') | fonticon"></Label>
-            <Label [text]="('form-icon-selector.' + iSet) | translate"></Label>
-        </FlexboxLayout>
-
-    </StackLayout>
+    <!-- Current icon's name -->
+    <Label row="0" col="0"
+        width="40%"
+        class="small-label"
+        textWrap="true"
+        [text]="icon?.label">
+    </Label>
 
     <!-- Color selectors -->
     <FlexboxLayout class="group-wrapper"
@@ -53,29 +44,63 @@
         <StackLayout (tap)="selectColor(0)"
             class="color-selector"
             marginBottom="10"
-            [style.background]="icon.color"></StackLayout>
+            [style.background]="icon?.color"></StackLayout>
 
         <StackLayout (tap)="selectColor(1)"
             class="color-selector"
-            [style.background]="icon.background"></StackLayout>
+            [style.background]="icon?.background"></StackLayout>
     </FlexboxLayout>
 
-    <!-- Current icon name & Search -->
+    <!-- Category selector & Search bar -->
     <FlexboxLayout row="1"
         col="0" colSpan="3"
         flexDirection="row"
         justifyContent="space-between"
         alignItems="flex-end">
 
-        <Label class="small-label"
-            (tap)="scrollRight()"
-            [text]="icon?.name?.substr(icon?.name?.indexOf(' fa-')+4, icon?.name?.length)">
-        </Label>
+        <FlexboxLayout [ngSwitch]="!!searchString?.length"
+            class="category-selector">
+
+            <!-- Selector -->
+            <PickerField *ngSwitchCase="false"
+                [pickerTitle]="'icon-selector.category-title' | translate"
+                [selectedValue]="currentCategory"
+                textField="text"
+                valueField="value"
+                modalAnimated="true"
+                class="category-picker"
+                [androidCloseButtonIcon]="'ic_delete'"
+                (pickerClosed)="categoryChanged($event)"
+                [items]="categories">
+
+                <ng-template let-item="item">
+                    <StackLayout class="form-select">
+                        <Label class="form-select-item"
+                            [class.selected]="item.value === currentCategory"
+                            [text]="item.text"></Label>
+                    </StackLayout>
+                </ng-template>
+            </PickerField>
+
+            <!-- "Search results" - tap to return to the last category -->
+            <Label *ngSwitchCase="true"
+                class="search-results"
+                (tap)="changeIconCategory(currentCategory)"
+                [text]="'icon-selector.search-results' | translate:{ icons: icons.length }">
+            </Label>
+
+            <!-- Caret -->
+            <Label class="fas caret-down category-picker-down"
+                width="15"
+                zIndex="100"
+                [text]="'fa-caret-down' | fonticon"></Label>
+
+        </FlexboxLayout>
 
         <StackLayout (tap)="searchIcon()"
             orientation="horizontal"
             verticalAlignment="center">
-            <Label class="fa radio-button"
+            <Label class="fa search-icon"
                 [class.active]="!!searchString"
                 [text]="'fa-search' | fonticon"></Label>
             <Label class="small-label"
@@ -85,14 +110,14 @@
 
     </FlexboxLayout>
 
-    <!-- Scrolling selector -->
+    <!-- Scrolling icon gallery -->
     <ScrollView orientation="horizontal"
         row="2" col="0"
         colSpan="3"
         #scrollView
         class="scroller-wrapper">
 
-        <!-- Never use a StackLayout directly within a ScrollView! -->
+        <!-- Never use a StackLayout directly inside a ScrollView! -->
         <FlexboxLayout *ngIf="!!icons.length"
             padding="5"
             flexDirection="row"
@@ -101,12 +126,12 @@
             width="auto">
 
             <FlexboxLayout *ngFor="let i of icons"
-                (tap)="icon.name = i; onChange(icon);"
+                (tap)="changeIcon(i)"
                 class="scroller-icon-wrapper"
-                [class.selected]="i === icon.name">
+                [class.selected]="i?.name === icon?.name">
 
-                <Label [ngClass]="i.substr(0, i.indexOf(' '))"
-                    [text]="i.substr(i.indexOf(' ')+1, i.length) | fonticon"></Label>
+                <Label [ngClass]="i?.class"
+                    [text]="('fa-'+i.name) | fonticon"></Label>
             </FlexboxLayout>
 
         </FlexboxLayout>

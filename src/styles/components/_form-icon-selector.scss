@@ -77,19 +77,39 @@
         border-radius: $button-radius;
     }
 
-    .radio-button-wrapper {
-        padding: 3 0;
-        font-size: 14;
-        color: $darkgray;
-        height: auto;
-        width: auto;
+    .category-selector {
         flex-direction: row;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
+        height: 20;
+        font-size: 16;
+        color: $lightgray;
+        padding: 0;
+        margin: 0;
     }
 
-    .radio-button {
-        margin: 0 10 0 0;
+    .category-picker {
+        font-size: 14;
+        color: $lightgray;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        text-decoration: none;
+        border: none;
+        background-color: transparent;        
+    }
+
+    .category-picker-down {
+        margin-left: 5;
+        width: 100%;
+    }
+
+    .search-results {
+        font-size: 14;
+    }
+
+    .search-icon {
+        margin-right: 5;
     }
 
     .active {

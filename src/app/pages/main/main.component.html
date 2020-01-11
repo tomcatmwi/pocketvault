@@ -64,9 +64,16 @@
                                         [style.background]="collection?.icon?.background"
                                         row="0"
                                         col="0">
-                                        <Label [class]="collection?.icon?.name?.split(' ')[0]"
+
+                                        <Label *ngIf="!allowRearrange"
+                                            [ngClass]="collection?.icon?.class"
                                             [style.color]="collection?.icon?.color"
-                                            [text]="collection?.icon?.name?.split(' ')[1] | fonticon"></Label>
+                                            [text]="('fa-'+collection?.icon?.name) | fonticon"></Label>
+
+                                        <Label *ngIf="allowRearrange"
+                                            class="fa"
+                                            [style.color]="collection?.icon?.color"
+                                            [text]="'fa-arrows-alt-v' | fonticon"></Label>
 
                                     </FlexboxLayout>
 

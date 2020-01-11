@@ -8,7 +8,6 @@ import * as permissions from 'nativescript-permissions';
 import * as fs from "tns-core-modules/file-system"
 import * as dialogs from 'tns-core-modules/ui/dialogs';
 import { ToastyService } from '~/app/services/toasty.service';
-import { BrowserModule } from '@angular/platform-browser';
 
 declare var android: any;
 

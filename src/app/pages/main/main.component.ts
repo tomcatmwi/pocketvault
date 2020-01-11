@@ -504,7 +504,17 @@ export class MainComponent {
 
   private _initBackButton() {
     if (this._appService.isAndroid)
-      this._page.on('BackButton', () => this.goUp(), this);
+      this._page.on('BackButton', () => {
+        if (this.allowRearrange) {
+          this.allowRearrange = false;
+          return;
+        }
+
+        if (!this.title)
+          this._appService.logout()
+        else
+          this.goUp();
+      }, this);
   }
 
   private _deinitBackButton() {

@@ -32,7 +32,7 @@ export class FirebaseAuthService {
     return Observable.create(observer => {
       firebase.login({ type: firebase.LoginType.GOOGLE })
         .then(
-          res => { observer.next(res); },
+          res => observer.next(res),
           err => {
             setTimeout(() =>
               dialogs.alert({

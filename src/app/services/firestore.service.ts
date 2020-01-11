@@ -155,6 +155,7 @@ export class FirestoreService {
     const translate = (collection) => {
       if (collection.name)
         collection.name = this._translateService.translate(collection.name);
+
       if (collection.items)
         collection.items.forEach(item => {
           item.id = Math.random().toString(36).substring(8);
@@ -163,6 +164,7 @@ export class FirestoreService {
           item.created = new Date().getTime();
           item.lastModified = new Date().getTime();
         });
+
       if (collection.collections)
         collection.collections.forEach(subcollection => {
           subcollection.id = Math.random().toString(36).substring(8);
@@ -176,6 +178,7 @@ export class FirestoreService {
   }
 
   //  Decrypts the loaded vault
+  //  lastsave is needed to update old vaults
   decryptVault(vault, masterPassword, cipher): Observable<Vault | Error> {
 
     this._store.dispatch(new ChangeCipher(cipher));
@@ -187,9 +190,8 @@ export class FirestoreService {
     return Observable.create(observer => {
 
       //  if it's not encrypted...
-      if (!vault.data || vault.decrypted || cipher === 'NONE') {
-        observer.next({ data: vault.data, decrypted: true });
-      }
+      if (!vault.data || vault.decrypted || cipher === 'NONE')
+        observer.next({ data: this._fixVault(vault.data), decrypted: true })
 
       //  decrypt
       else
@@ -197,8 +199,8 @@ export class FirestoreService {
           let temp = JSON.parse(CryptoJS[cipher].decrypt(vault.data, masterPassword).toString(CryptoJS.enc.Utf8));
           this._toastyService.toasty(this._translateService.translate('firebase.vault-decrypted'));
           this._store.dispatch(new ChangeMasterPass(masterPassword));
-
-          observer.next({ data: temp, decrypted: true });
+          temp = this._fixVault(temp);
+          observer.next({ data: this._fixVault(temp), decrypted: true });
         } catch (error) {
           dialogs.alert({
             title: this._translateService.translate('firebase.vault-decrypt-error-title'),
@@ -235,6 +237,11 @@ export class FirestoreService {
 
     return Observable.create(observer => {
 
+      // console.log('*** SAVING IS DISABLED ***');
+      // this._toastyService.toasty('*** SAVING IS DISABLED ***');
+      // observer.next(null);
+      // return;
+
       const path = fs.knownFolders.temp().path + '/pocketvault/pocketvault.json';
       ref.put(fs.File.fromPath(path), metadata)
         .then(
@@ -255,5 +262,31 @@ export class FirestoreService {
           });
 
     });
+  }
+
+  //  This is needed to fix vaults generated with the first beta version of the app
+  //  Adds class field and removes 'fa-' prefix from icon name values
+  private _fixVault(data: VaultCollection[]) {
+    if (data.length <= 0) return;
+
+    const fix = (collection) => {
+
+      if (collection.icon) {
+        if (collection.icon.name.substring(0, 6) === 'fa fa-') {
+          collection.icon.name = collection.icon.name.substring(6);
+          collection.icon.class = 'fa';
+        }
+        if (collection.icon.name.substring(0, 12) === 'fa-brand fa-') {
+          collection.icon.name = collection.icon.name.substring(12);
+          collection.icon.class = ['fa', 'fa-brand'];
+        }
+      }
+
+      collection.collections.forEach(coll => coll = fix(coll));
+
+      return collection;
+    };
+
+    return fix(data);
   }
 }

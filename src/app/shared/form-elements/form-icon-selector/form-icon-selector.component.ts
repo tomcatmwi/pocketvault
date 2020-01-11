@@ -5,7 +5,8 @@ import { TranslateService } from '~/app/services/translate.service';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Icon } from '~/app/state/vault/vault.state';
 
-const defaults = require('~/app/assets/defaults.json');
+const iconCategories = require('~/app/assets/icon-categories.json');
+const icons = require('~/app/assets/icons.json');
 
 const default_color = '#191923';
 const default_background = '#fbfef9';
@@ -38,16 +39,23 @@ export class FormIconSelectorComponent implements OnInit {
   @Output() output: Icon;
   @ViewChild('scrollView', { static: true }) scrollView: ElementRef;
 
-  iconSets: string[] = ['fa-brand', 'fa'];    //  available icon categories
-  icons = [];                                 //  currently displayed icon set
-  iconSet: number;                            //  the current icon set's node name
+  //  currently displayed icon set
+  icons = [];
+
+  //  array for ListPicker
+  categories = [];
+
   searchString: string;
+  currentCategory: string;
   private _showSpinner: boolean = false;
 
+  //  The currently selected icon
   icon: Icon = {
     name: null,
+    label: null,
     color: default_color,
-    background: default_background
+    background: default_background,
+    class: null
   }
 
   onChange: any = () => { };
@@ -70,51 +78,70 @@ export class FormIconSelectorComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  writeValue(value) {
+  writeValue(value: Icon) {
     if (value) {
-      this.icon = value
-      this._setIcon();
+      //  find category by current icon
+      Object.keys(iconCategories).forEach(c => {
+        if (iconCategories[c].includes(value.name))
+          this.changeIconCategory(c, value);
+      });
+
+      this._scrollToIcon();
     } else
-      this.icon = {
-        name: this.icons[0],
-        color: default_color,
-        background: default_background
-      }
-  }
-
-  private _setIcon() {
-    this.searchString = null;
-    const iSet = this.icon.name.substr(0, this.icon.name.indexOf(' '));
-    this.iconSet = this.iconSets.findIndex(x => x === iSet);
-    this.icons = defaults.icons.filter(x => this.iconSets[this.iconSet] + ' ' === x.substr(0, this.iconSets[this.iconSet].length + 1));
-    const scrollPos = this.icons.findIndex(x => x.indexOf(this.icon.name) !== -1) * 60.5;
-
-    //  delay is needed to let the icons to load
-    setTimeout(() => {
-      this.scrollView.nativeElement.scrollToHorizontalOffset(scrollPos, true);
-    }, 1000);
+      this.changeIconCategory();
   }
 
   ngOnInit() {
-    if (!this.input)
-      this.changeIconSet(0)
-    else {
-      this.icon = Object.assign({}, this.input);
-      this.onChange(this.icon);
-      this._setIcon();
-    }
+    let categories = [];
+    Object.keys(iconCategories).forEach(category => {
+      categories.push({
+        text: 'fontawesome.' + category,
+        value: category
+      });
+    });
+    categories = this._translateService.translateBatch(categories, null, 'text');
+    this.categories = categories.sort((a, b) => a.text > b.text ? 1 : -1);
   }
 
-  changeIconSet(iSet: number) {
-    this.iconSet = iSet;
-    this.icons = defaults.icons.filter(x => this.iconSets[iSet] + ' ' === x.substr(0, this.iconSets[iSet].length + 1));
-    this.icon.name = this.icons[0];
-    this.scrollView.nativeElement.scrollToHorizontalOffset(0, true);
-    this.searchString = null;
+  //  Changes the currently selected icon
+  changeIcon(icon: Icon) {
+    this.icon.name = icon.name;
+    this.icon.label = icon.label;
+    this.icon.class = icon.class;
     this.onChange(this.icon);
   }
 
-  selectColor(what) {
+  categoryChanged(event) {
+    this.changeIconCategory(event.object.selectedValue);
+  }
+
+  //  Changes to a different icon category, selects first icon
+  changeIconCategory(iconCategory?: string, icon?: Icon) {
+
+    if (typeof iconCategory === 'undefined')
+      iconCategory = Object.keys(iconCategories)[0];
+
+    const category = iconCategories[iconCategory];
+    this.currentCategory = iconCategory;
+
+    const tempIcons = [];
+    category.forEach(iconName => {
+      const tempIcon = {
+        name: iconName,
+        label: icons[iconName].label,
+        class: icons[iconName].class || 'fa'
+      }
+      tempIcons.push(tempIcon);
+    });
+
+    this.icons = tempIcons.sort((a, b) => a.label > b.label ? 1 : -1);
+    this.changeIcon(icon ? icon : this.icons[0]);
+    this.scrollView.nativeElement.scrollToHorizontalOffset(0, true);
+    this.searchString = null;
+  }
+
+  //  Changes the color or background color of the icon
+  selectColor(what: 0 | 1) {
     const picker = new ColorPicker();
     let color;
     switch (what) {
@@ -141,28 +168,54 @@ export class FormIconSelectorComponent implements OnInit {
 
     }).then(res => {
       if (!res.result || !res.text) return;
-      if (res.text.length > 32) res.text = res.text.substr(0, 32);
+      if (res.text.length > 64) res.text = res.text.substr(0, 64);
 
-      const rx = new RegExp(res.text, 'ig');
-      let icons = defaults.icons.filter(x => !!x.match(rx));
+      this.spinner = true;
+      this.searchString = res.text;
 
-      if (!icons.length) {
+      const rx = new RegExp('^' + res.text, 'ig');
+
+      const iconsFound = [];
+      Object.keys(icons).forEach(i => {
+        const icon = icons[i];
+
+        icon.name = i;
+        if (!icon.class) icon.class = 'fa';
+
+        if (!!icon.label.match(rx) ||
+          (!!icon.search && icon.search.includes(res.text.toLowerCase)))
+          iconsFound.push(icon);
+      });
+
+
+      if (!iconsFound.length) {
+        this.spinner = false;
+        this.searchString = null;
         dialogs.alert({
           title: this._translateService.translate('form-icon-selector.search-error-title'),
           message: this._translateService.translate('form-icon-selector.search-error'),
           okButtonText: this._translateService.translate('general.ok-button'),
         });
       } else {
-        this.icons = icons;
-        this.searchString = res.text;
-        this.icon.name = this.icons[0];
+        this.icons = iconsFound.sort((a, b) => a.label > b.label ? 1 : -1);
+        this.changeIcon(this.icons[0]);
+
+        this.scrollView.nativeElement.scrollToHorizontalOffset(0, true);
         this.onChange(this.icon);
+        this.spinner = false;
       }
     });
   }
 
-  updateFormControl() {
-    this.onChange(this.icon);
+  //  Sets the current icon and sets up other variables
+  private _scrollToIcon() {
+    this.searchString = null;
+    const scrollPos = this.icons.findIndex(x => x.name === this.icon.name) * 60.5;
+
+    //  delay is needed to let the icons to load
+    setTimeout(() => {
+      this.scrollView.nativeElement.scrollToHorizontalOffset(scrollPos, true);
+    }, 1000);
   }
 
 }

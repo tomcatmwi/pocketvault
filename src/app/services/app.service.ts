@@ -10,6 +10,10 @@ import * as application from 'tns-core-modules/application'
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import * as platform from 'tns-core-modules/platform';
 import * as appversion from "nativescript-appversion";
+import { Store } from '@ngrx/store';
+import { Clear } from '~/app/state/vault/vault.actions';
+import { ChangeMasterPass, ChangeCipher } from '~/app/state/settings/settings.actions';
+import { Logout } from '~/app/state/user/user.actions';
 
 export interface VersionInfo {
   appId: string;
@@ -26,7 +30,8 @@ export class AppService {
 
   constructor(
     private _translateService: TranslateService,
-    private _toastyService: ToastyService
+    private _toastyService: ToastyService,
+    private _store: Store<any>
   ) {
     if (isAndroid) this._backButton();
   }
@@ -108,6 +113,21 @@ export class AppService {
 
     });
 
+  }
+
+  logout() {
+    dialogs.confirm({
+      title: this._translateService.translate('general.logout-title'),
+      message: this._translateService.translate('general.logout'),
+      okButtonText: this._translateService.translate('general.yes-button'),
+      cancelButtonText: this._translateService.translate('general.no-button')
+    }).then(res => {
+      if (!res) return;
+      this._store.dispatch(new Clear());
+      this._store.dispatch(new ChangeMasterPass(null));
+      this._store.dispatch(new ChangeCipher(null));
+      this._store.dispatch(new Logout());
+    });
   }
 
   exitApp() {
